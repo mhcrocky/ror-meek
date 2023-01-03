@@ -1,0 +1,169 @@
+#profile
+  .header-page(style='{{background}}')
+    .header-page-bg
+
+      .list-breadcrumbs.left-right-offset
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ui-sref': 'home' } Home
+        .list-breadcrumbs-item
+          .last-flex-item-container
+            My Page
+
+  .avatar
+    %img(ng-src='{{auth.currentUser.profile_pic}}')
+  %h1.title
+    {{auth.currentUser.full_name}}
+  .text-info
+    {{auth.currentUser.email}}
+
+  -# .media-wrapper.left-right-offset{ 'ng-show': 'favoriteActive' }
+  -#   .title
+  -#     %h2 Favorites:
+  -#     .tab-button-wrapper{ 'ng-class': 'favoriteActive' }
+  -#       .cell.stations{ 'ng-click': "favoriteActiveUpdate('station')" } Radio
+  -#       .cell.podcasts{ 'ng-click': "favoriteActiveUpdate('podcast')" } Podcasts
+  -#       .cell.episodes{ 'ng-click': "favoriteActiveUpdate('episode')" } Episodes
+
+  -#   %slick.list-box.grid-view{ 'ng-if': "favoriteActive === 'station' && favoriteStations.length", 'settings': 'slickConfig' }
+  -#     .list-box-item{ 'ng-repeat': 'media in favoriteStations', 'ng-include': "'partials/media/radio_item.html'" }
+
+  -#   %slick.list-box.grid-view{ 'ng-if': "favoriteActive === 'podcast' && favoritePodcasts.length", 'settings': 'slickConfig' }
+  -#     .list-box-item{ 'ng-repeat': 'media in favoritePodcasts', 'ng-include': "'partials/media/podcast_item.html'" }
+
+  -#   %slick.list-box.grid-view{ 'ng-if': "favoriteActive === 'episode' && favoriteEpisodes.length", 'settings': 'slickConfig' }
+  -#     .list-box-item{ 'ng-repeat': 'media in favoriteEpisodes', 'ng-include': "'partials/media/episode_item.html'" }
+
+
+  -# .media-wrapper.left-right-offset{ 'ng-show': 'recentActive' }
+  -#   .title
+  -#     %h2 Recent Plays
+  -#     .tab-button-wrapper{ 'ng-class': 'recentActive' }
+  -#       .cell.stations{ 'ng-click': "recentActiveUpdate('station')" } Radio
+  -#       .cell.episodes{ 'ng-click': "recentActiveUpdate('episode')" } Episodes
+
+
+  -#   %slick.list-box.grid-view{ 'ng-if': "recentActive === 'station' && recentStations.length", 'settings': 'slickConfig' }
+  -#     .list-box-item{ 'ng-repeat': 'media in recentStations', 'ng-include': "'partials/media/radio_item.html'" }
+
+  -#   %slick.list-box.grid-view{ 'ng-if': "recentActive === 'episode' && recentEpisodes.length", 'settings': 'slickConfig' }
+  -#     .list-box-item{ 'ng-repeat': 'media in recentEpisodes', 'ng-include': "'partials/media/episode_item.html'" }
+
+
+  .list-settings.left-right-offset
+
+    .list-settings-item
+      .title
+        %h2 Contact Info
+        .btn-edit{'ng-click' => 'modal.editContactInfo( auth.currentUser.address.country_id )'}
+          Edit
+        .decoration
+      .line
+        %span.name.icon-mappin
+          Address:
+        %span.value
+          {{ auth.currentUser.address.city }}, {{ auth.currentUser.address.region.name }}, {{ auth.currentUser.address.postcode }}, {{ auth.currentUser.address.country.name }}
+      .line
+        %span.name.icon-telephone
+          Telephone:
+        %span.value
+          {{ auth.currentUser.address.telephone }}
+      .line
+        %a.ico-soc.facebook.icon-facebook{ 'ng-href' => '{{auth.currentUser.twitter}}', 'target' => '_blank' }
+        %a.ico-soc.twitter.icon-twitter{ 'ng-href' => '{{auth.currentUser.facebook}}', 'target' => '_blank' }
+        %a.ico-soc.linkedin.icon-linkedin{ 'ng-href' => '{{auth.currentUser.linkedin}}', 'target' => '_blank' }
+
+    .list-settings-item
+      .title
+        %h2 Details About You
+        .btn-edit{ 'ng-click': 'modal.editDetailsInfo()' }
+          Edit
+        .decoration
+      .line
+        %span.name.icon-church
+          Your Church Name:
+        %span.value
+          {{ auth.currentUser.church_name }}
+      .line
+        %span.name.icon-roadsign
+          Your Church Type:
+        %span.value
+          {{ auth.currentUser.church_type }}
+      .line
+        %span.name.icon-calendar
+          Birth Date:
+        %span.value
+          {{ auth.currentUser.birth_date }}
+      .line
+        %span.name.icon-lockedheart
+          How Long Have You Been Christian:
+        %span.value
+          {{ auth.currentUser.christian_for }}
+      .line
+        %span.name.icon-gender
+          Gender:
+        %span.value
+          {{ auth.currentUser.gender }}
+      .line
+        %span.name.icon-language
+          Language:
+        %span.value
+          {{ auth.currentUser.language }}
+      .line
+        %span.name.icon-pen
+          Favorite Verse:
+        %span.value
+          {{ auth.currentUser.verse }}
+
+    .list-settings-item
+      .title
+        %h2 Account Settings
+        .btn-edit{ 'ng-click': 'modal.editSettingsInfo()' }
+          Edit
+        .decoration
+      .line
+        %span.name.icon-link
+          Profile URL:
+        %span.value
+          {{ auth.currentUser.slug }}
+      .line.avatar-image
+        %span.name.icon-user
+          Profile Picture:
+        %span.value
+          %img{ 'ng-src': '{{ auth.currentUser.profile_pic }}' }
+      .line.background-image
+        %span.name.icon-camera
+          Background Image:
+        %span.value{{ 'ng-if': 'auth.currentUser.background_pic' }}
+          %img{ 'ng-src': '{{ auth.currentUser.background_pic }}' }
+      .line.background-color
+        %span.name.icon-brush
+          Background Color:
+        %span.value
+          .flag-color{{'ng-style' => "{'background-color': auth.currentUser.background_color }" }}
+
+    .list-settings-item
+      .title
+        %h2 Account Details
+        .btn-edit{ 'ng-click': 'modal.editAccountInfo()' }
+          Edit
+        .decoration
+      .line.email
+        %span.name.icon-email
+          Email Address:
+        %span.value
+          {{ auth.currentUser.email }}
+      .line.email{{ 'ng-if': 'auth.currentUser.unconfirmed_email' }}
+        %span.name.icon-email
+          Unconfirmed email:
+        %span.value
+          {{ auth.currentUser.unconfirmed_email }}
+      .line
+        %span.name.icon-user
+          Name:
+        %span.value
+          {{ auth.currentUser.full_name }}
+      .line
+        %span.name.icon-key
+          Password:
+        %span.value
+          *******

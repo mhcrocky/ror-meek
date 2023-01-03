@@ -1,0 +1,87 @@
+.google-schema{ 'ng-bind-html': 'schema_content' }
+#inside-page.podcast
+  .header-page{ style: 'background-image: url( {{ article.wallpaper }} )' }
+    .header-page-bg
+
+      .list-breadcrumbs.left-right-offset
+        .list-breadcrumbs-item.uppercase Article
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ng-href': 'article/{{category.slug}}' } {{ category.name }}
+        .list-breadcrumbs-item
+          .last-flex-item-container
+            {{article.name}}
+
+      .categories.uppercase
+        Article, {{category.name}}
+      %h1.title
+        {{article.name}}
+
+  .list-soc
+    .list-soc-item{ 'ng-click' => "favorite.addToFavorite(article.id, 'Article')" }>
+      .icon.icon-heart.add-favourite.active
+      .title
+        Add to
+        %span Favorites
+
+    .list-soc-item.separator
+
+    .list-soc-item
+      .icon.icon-facebook.soc-facebook{ 'ng-click' => "share.shareLink( 'facebook', { imagePath: article.image, title: article.name, linkPath: aritcle.path } )" }
+      .title
+        %span Facebook
+
+    .list-soc-item
+      .icon.icon-twitter.soc-twitter{ 'ng-click' => "share.shareLink( 'twitter', { imagePath: article.image, title: article.name, linkPath: article.path } )" }
+      .title
+        %span Tweet
+        this
+
+    .list-soc-item
+      .icon.icon-pinterest.soc-pinterest{ 'ng-click' => "share.shareLink( 'pinterest', { imagePath: article.image, title: article.name, linkPath: article.path } )" }
+      .title
+        %span Pinterest
+
+    .list-soc-item{ 'ng-if' => 'auth.isAuthenticated()' }
+      .icon.icon-email.soc-email{ 'ng-click' => "modal.shareViaEmail(article.name, article.path)" }
+      .title
+        %span Email
+
+  %h1.title.left-right-offset
+    {{article.h1}}
+  .description.left-right-offset
+    %img{ 'ng-src': '{{ article.image }}' }
+    %div{ 'ng-bind-html': 'htmlSafeDescription' }
+  .fog.mobile-landscape
+  .btn-read-more.mobile-landscape{ 'ng-hide': 'fullDescription === true', 'ng-click': "fullDescription = true" }
+    Read more  
+
+  .podcast-episodes-container.left-right-offset
+    .title
+      {{ postsCount }} Posts
+
+    .sub-title
+      .sub-title-row
+        .sub-title-cell
+          %form.search-form.small{ 'ng-submit': 'loadMorePosts(1, searchQuery.text)', 'ng-include': "'partials/header/search.html'" }
+
+    .list-media-line{ 'ng-show': 'postsCount'}
+      .list-media-line-item{ 'ng-repeat': 'post in posts',
+                             'ng-click':  'toggleActivePost(post)'}
+
+        .media-item
+          .media-item-action 
+
+        .media-item.center-side
+          .media-item-table
+            .name{'ng-if': "!isActive(post)"}
+              {{ post.name }}
+            %a.name.as-link{'ng-if': "isActive(post)", 'ng-href': '{{post.path}}'}
+              {{ post.name }}
+            .date
+              {{ post.released_at }}
+
+        .media-item
+          %a.media-item-show
+            .icon-info
+
+    %scroll-bottom-sensor{ 'ng-if': 'postsNextPage', 'on-reach-bottom': 'loadMorePosts( postsNextPage, searchQuery.text )' }

@@ -1,0 +1,14 @@
+I"(function() {
+  angular.module("Meek").factory("Post", function($resource) {
+    return $resource("/api/articles/:articleId/posts/:postId", {
+      format: 'json',
+      page: 1
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

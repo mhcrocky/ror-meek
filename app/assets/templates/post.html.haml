@@ -1,0 +1,52 @@
+#inside-page.radio
+  .header-page{ style: 'background-image: url( {{ article.wallpaper }} )' }
+    .header-page-bg
+
+      .list-breadcrumbs.left-right-offset
+        .list-breadcrumbs-item.uppercase Post
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ng-href': 'article/{{category.slug}}' } {{ category.name }}
+        .list-breadcrumbs-item
+          .last-flex-item-container
+            {{post.name}}
+
+      .categories.uppercase
+        Post, {{category.name}}
+      %h1.title
+        {{post.name}}
+      .info
+        %a.icon-link{ 'ng-if' => 'post.data[0].website', 'ng-href' => '{{post.data[0].website}}', 'target' => '_blank' }
+          Visit the website
+
+  .list-soc
+    .list-soc-item
+      .icon.icon-facebook.soc-facebook{ 'ng-click' => "share.shareLink( 'facebook', { imagePath: radioStation.image, title: radioStation.name, linkPath: radioStation.path } )" }
+      .title
+        %span Facebook
+
+    .list-soc-item
+      .icon.icon-twitter.soc-twitter{ 'ng-click' => "share.shareLink( 'twitter', { imagePath: radioStation.image, title: radioStation.name, linkPath: radioStation.path } )" }
+      .title
+        %span Tweet
+        this
+
+    .list-soc-item
+      .icon.icon-pinterest.soc-pinterest{ 'ng-click' => "share.shareLink( 'pinterest', { imagePath: radioStation.image, title: radioStation.name, linkPath: radioStation.path } )" }
+      .title
+        %span Pinterest
+
+    .list-soc-item{ 'ng-if' => 'auth.isAuthenticated()' }
+      .icon.icon-email.soc-email{ 'ng-click' => "modal.shareViaEmail(post.name, post.path)" }
+      .title
+        %span Email
+
+  %h3.title.left-right-offset
+    {{post.h1}}
+  .description.left-right-offset{ 'ng-class': "{'active': fullDescription === true}" }
+    {{post.body}}  
+  .description.left-right-offset{ 'ng-class': "{'active': fullDescription === true}" }
+    %img{ 'ng-src': '{{ post.image }}' }
+    %div{ 'ng-bind-html': 'htmlSafeDescription' }
+  .fog.mobile-landscape
+  .btn-read-more.mobile-landscape{ 'ng-hide': 'fullDescription === true', 'ng-click': "fullDescription = true" }
+    Read more

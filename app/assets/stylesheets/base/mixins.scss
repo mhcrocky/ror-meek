@@ -1,0 +1,218 @@
+@mixin user-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+@mixin clearfix {
+  position: relative;
+
+  &:after {
+   content: '';
+   clear: both;
+   display: block;
+   height: 0;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+     -moz-background-size: $size;
+       -o-background-size: $size;
+          background-size: $size;
+}
+
+@mixin transform-translate($top, $left) {
+  -webkit-transform: translate($top, $left);
+     -moz-transform: translate($top, $left);
+      -ms-transform: translate($top, $left);
+       -o-transform: translate($top, $left);
+          transform: translate($top, $left);
+}
+
+@mixin transform-rotate($deg) {
+  -webkit-transform: rotate($deg);
+     -moz-transform: rotate($deg);
+      -ms-transform: rotate($deg);
+       -o-transform: rotate($deg);
+          transform: rotate($deg);
+}
+
+@mixin transform-none {
+  -webkit-transform: none;
+     -moz-transform: none;
+      -ms-transform: none;
+       -o-transform: none;
+          transform: none;
+}
+
+//TITLES
+@mixin title($font-size) {
+  font-size: $font-size;
+  font-family: $chronicle-disp-semibold;
+  text-align: left;
+  @content;
+}
+
+//MEDIA
+@mixin desktop {
+  @media screen and (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tablet-landscape {
+  @media screen and (max-width: $tablet-landscape) {
+    @content;
+  }
+}
+
+@mixin tablet-portrait {
+  @media screen and (max-width: $tablet-portrait) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape {
+  @media screen and (max-width: $mobile-landscape) {
+    @content;
+  }
+}
+
+@mixin mobile-portrait {
+  @media screen and (max-width: $mobile-portrait) {
+    @content;
+  }
+}
+
+@mixin transition($type, $duration) {
+  transition: $type $duration;
+  -webkit-transition: $type $duration;
+  -moz-transition: $type $duration;
+  -ms-transition: $type $duration;
+  -o-transition: $type $duration;
+  @content;
+}
+
+// BUTTONS
+
+@mixin btn-login-soc($background-color) {
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  display: block;
+  background: $background-color;
+  text-align: center;
+  font-size: 14px;
+  line-height: 46px;
+  color: #fff;
+
+  &:hover { background: lighten($background-color, 5%); }
+
+  @content;
+}
+
+@mixin btn-search {
+  padding: 0 24px 0 15px;
+  border: 0;
+  background: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $header_grey;
+  cursor: pointer;
+
+  &:focus { outline: none; }
+
+  @content;
+}
+
+@mixin play-with-fade {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  z-index: 0;
+
+  &:hover {
+    .bg-dark { opacity: 1; }
+  }
+
+  .image {
+    width: 100%;
+  }
+
+  .bg-dark {
+    @include transition(opacity, 0.3s);
+    width: 100%;
+    height: 100%;
+    background: rgba(#000, 0.7);
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .btn-play-media {
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    position: absolute;
+
+    &:before {
+      @include transform-translate(-50%, -50%);
+
+      width: 90px;
+      padding-left: 9px;
+      top: 50%;
+      left: 50%;
+      border-radius: 100%;
+      font-size: 29px;
+      line-height: 80px;
+      border: 5px solid #fff;
+      color: #fff;
+      text-align: center;
+      position: absolute;
+      box-sizing: border-box;
+    }
+  }
+
+  @content;
+}
+
+@mixin user-avatar($size) {
+  .user-avatar {
+    @include border-radius($size/2 + px);
+    width: $size + px;
+    height: $size + px;
+    overflow: hidden;
+    display: inline-block;
+    background-size: cover;
+
+    @content;
+  }
+}
+
+@mixin mobile-modal {
+  @include transform-none;
+
+  max-width: 100%;
+  max-height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .modal-wrapper {
+    width: 100%;
+
+    .logo { margin-top: 10px; }
+  }
+}

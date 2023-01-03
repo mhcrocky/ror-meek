@@ -1,0 +1,11 @@
+.action-button
+  .icon.icon-facebook{ 'ng-click': "videoPlayer.shareBy('facebook')" }
+
+.action-button
+  .icon.icon-twitter{ 'ng-click': "videoPlayer.shareBy('twitter')" }
+
+.action-button
+  .icon.icon-pinterest{ 'ng-click': "videoPlayer.shareBy('pinterest')" }
+
+.action-button{ 'ng-if': 'auth.isAuthenticated()' }
+  .icon.icon-email{ 'ng-click': "videoPlayer.shareBy('email')" }

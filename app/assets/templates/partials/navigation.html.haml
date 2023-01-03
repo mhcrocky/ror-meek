@@ -1,0 +1,41 @@
+%li.sidebar-block-name MY MENU
+
+%li.section
+  .section-header{ 'ng-click': 'sideNav.toggleSection($event)' }
+    %span.icon-podcast
+    Podcasts
+  %ul.new-panel-section
+    %li.header Podcasts
+    %li{ 'ng-repeat': "category in categories | filter: { kind: 'podcast' }" }
+      %a{ 'ui-sref': 'podcasts({ id: category.slug })', 'ng-click': 'sideNav.hideAllSections()' }
+        {{ category.name }}
+
+%li.section        
+  .section-header{ 'ng-click': 'sideNav.toggleSection($event)' }
+    %span.icon-article
+    Articles
+  %ul.new-panel-section
+    %li.header Articles
+    %li{ 'ng-repeat': "category in categories | filter: { kind: 'article' }" }
+      %a{ 'ui-sref': 'articles({ id: category.slug })', 'ng-click': 'sideNav.hideAllSections()' }
+        {{ category.name }}      
+
+%li.section
+  .section-header{ onclick: "#{'window.open("'+ ENV.fetch('BLOG_URL')+'","_blank")'}" }
+    %span.icon-blog
+    Blog
+
+%li{{ 'ng-if': 'auth.isAuthenticated()' }}
+  .section
+    .section-header{ 'ng-click': 'sideNav.hideAllSections()' }
+      %span.icon-heart
+      Favorites
+  .section
+    .section-header.favorites-nav-link
+      %a{ 'ui-sref': 'favoritePodcasts', 'ng-click': 'sideNav.hideAllSections()' } Podcasts
+  .section
+    .section-header.favorites-nav-link
+      %a{ 'ui-sref': 'favoriteEpisodes', 'ng-click': 'sideNav.hideAllSections()' } Episodes
+  .section
+    .section-header.favorites-nav-link
+      %a{ 'ui-sref': 'favoriteArticles', 'ng-click': 'sideNav.hideAllSections()' } Articles

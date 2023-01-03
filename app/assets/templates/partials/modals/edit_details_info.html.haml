@@ -1,0 +1,41 @@
+%script{ type: 'text/ng-template', id: 'editDetailsInfo' }
+  .modal.details-about-you
+    .modal-wrapper
+      .btn-hide.icon-arrow-back{{ 'ng-click': 'modal.closeAll()' }}
+      %h3 Details About You
+
+      %form.site-form{ action: '/api/user/account.json', method: :put, 'ng-submit' => 'editAccount.accountUpdate($event)' }
+        %input{ type: 'hidden', name: 'user[address_attributes[id]]', 'ng-value' => 'auth.currentUser.address.id' }
+
+        .input-parent
+          %label.icon-church{ for: 'user-church-name' } Church Name
+          %input#user-church-name.field{ type: 'text', name: 'user[church_name]', 'ng-value' => 'auth.currentUser.church_name' }
+
+        .input-parent
+          %label.icon-roadsign{ for: 'user-church-type' } Church Type
+          %select#user-church-type.field{ name: 'user[church_type_id]' }
+            %option{ 'ng-repeat' => 'churchType in churchTypes', 'ng-value' => 'churchType.id', 'ng-selected' => 'churchType.id == auth.currentUser.church_type_id' }
+              {{churchType.name}}
+
+        .input-parent.birthdate-wrapper{ 'meek-date-picker': true, year: '{{ auth.currentUser.year }}', month: '{{ auth.currentUser.month }}', day: '{{ auth.currentUser.day }}' }
+        .input-parent
+          %label.icon-lockedheart{ for: 'user-christian-for' } How Many Years Have You Been a Christian?
+          %input#user-christian-for.field{ type: 'text', name: 'user[christian_for]', 'ng-model' => 'auth.currentUser.christian_for' }
+
+        .input-parent
+          %label.icon-gender{ for: 'user-gender' } Gender
+          %select#user-gender.field{ name: 'user[gender]' }
+            %option{ style: 'display: none', value: '' } Select an option...
+            %option{ 'ng-repeat' => 'gender in genders', 'ng-value' => 'gender', 'ng-selected' => 'gender == auth.currentUser.gender' }
+              {{gender}}
+
+        .input-parent
+          %label.icon-language{ for: 'user-language' } Language
+          %input#user-language.field{ name: 'user[language]', 'ng-model' => 'auth.currentUser.language' }
+
+        .input-parent
+          %label.icon-pen{ for: 'user-favorite-verse' } Favorite Verse
+          %textarea#user-favorite-verse.field{ name: 'user[verse]', 'ng-model' => 'auth.currentUser.verse', 'rows' => '4' }
+
+        %button.btn-submit{ type: 'submit' } Save
+        .btn-cancel{{ 'ng-click': 'modal.closeAll()' }} Cancel

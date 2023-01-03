@@ -1,0 +1,7 @@
+.gdpr-cookies{'ng-if': '!isCookiesAllowed()' }
+  .gdpr-cookies__inner
+    %p.gdpr-cookies__item.left-right-offset
+      We use cookies on our website to help give you the best online experience.
+      %a.gdpr-cookies__link{href: '/cookies'} Read more
+    .gdpr-cookies__item.left-right-offset
+      %button.gdpr-cookies__button{'ng-click': 'setCookiesAllowed()'} Allow

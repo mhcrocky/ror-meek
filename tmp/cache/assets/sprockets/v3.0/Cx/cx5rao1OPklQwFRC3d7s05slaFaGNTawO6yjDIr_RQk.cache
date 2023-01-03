@@ -1,0 +1,9 @@
+I"±(function() {
+  angular.module('Meek').factory('Search', function($resource) {
+    return $resource('/api/search/searches', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

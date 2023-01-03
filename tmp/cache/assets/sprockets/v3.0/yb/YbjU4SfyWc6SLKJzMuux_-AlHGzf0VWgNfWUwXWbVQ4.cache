@@ -1,0 +1,13 @@
+I"ì(function() {
+  angular.module("Meek").factory("RadioStation", function($resource) {
+    return $resource("/api/radio_stations/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

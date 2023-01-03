@@ -1,0 +1,14 @@
+%h1
+  Podcasts with broken RSS feed.
+
+- @podcasts.each do |podcast|
+  %hr
+
+  %p
+    Name: #{podcast.name}
+  %p
+    h1: #{podcast.h1}
+  %p
+    Feed url: #{podcast.feed_url}
+
+%hr

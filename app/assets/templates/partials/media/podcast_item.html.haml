@@ -1,0 +1,20 @@
+.item-box-image
+  .bg-dark
+    .icon-button-play.btn-play-media{ 'ng-if': '!media.current_episode.video', 'ng-click': 'player.startPodcast(media, media.current_episode)' }
+    .icon-button-play.btn-play-media{ 'ng-if': 'media.current_episode.video', 'ng-click': 'videoPlayer.openVideoDialog(media.current_episode)' }
+
+  %img.image{ 'ng-src': '{{ media.for_preview.image }}' }
+
+
+.item-box-category
+  %a.title{ 'ng-href': '{{ media.for_preview.category_path }}' }
+    {{ media.for_preview.category_name }}
+
+
+%a.item-box-name{ 'ng-href': '{{ media.for_preview.path }}' }
+  {{ media.for_preview.name }}
+
+.item-box-description
+  {{ media.for_preview.description | truncate: 110 }}
+.item-box-description.list-view
+  {{ media.for_preview.description }}

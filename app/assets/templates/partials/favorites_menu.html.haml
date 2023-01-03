@@ -1,0 +1,12 @@
+%li.list-menu-static-page-item{ 'ng-class': "{active: favorite_type == 'all'}" }
+  %a{ 'ui-sref': 'favoriteAll' }
+    All
+%li.list-menu-static-page-item{ 'ng-class': "{active: favorite_type == 'podcasts'}" }
+  %a{ 'ui-sref': 'favoritePodcasts' }
+    Podcasts
+%li.list-menu-static-page-item{ 'ng-class': "{active: favorite_type == 'episodes'}" }
+  %a{ 'ui-sref': 'favoriteEpisodes' }
+    Episodes
+%li.list-menu-static-page-item{ 'ng-class': "{active: favorite_type == 'articles'}" }
+  %a{ 'ui-sref': 'favoriteArticles' }
+    Articles

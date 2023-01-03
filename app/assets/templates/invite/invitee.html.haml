@@ -1,0 +1,27 @@
+#acceptInvitation
+  .col-xs-12
+    %h1.avarage-title Registration via invitation
+
+    .row
+      .col-xs-12
+        %h3 Profile Info
+
+        %form{ action: '/api/invitation.json', method: :patch, 'ng-submit' => 'invitable.accept($event)' }
+          .form-group
+            %input{ type: 'hidden', name: 'base' }
+            %input{ type: 'hidden', name: 'invite[invitation_token]' }
+
+          .form-group
+            %input#invite-first-name.form-control{ name: 'invite[first_name]', placeholder: 'First Name' }
+
+          .form-group
+            %input#invite-last-name.form-control{ name: 'invite[last_name]', placeholder: 'Last Name' }
+
+          .form-group
+            %input#password-invite-password.form-control{ type: 'password', name: 'invite[password]', placeholder: 'Password - at least 8 characters' }
+
+          .form-group
+            %input#password-invite-password-confirmation.form-control{ type: 'password', name: 'invite[password_confirmation]', placeholder: 'Password Confirmation' }
+
+
+          %button.btn.btn-primary{ type: 'submit' } Save

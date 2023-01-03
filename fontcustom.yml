@@ -1,0 +1,19 @@
+font_name: meek
+css_selector: .icon-{{glyph}}
+preprocessor_path: false
+autowidth: false
+no_hash: true
+force: false
+debug: false
+quiet: false
+
+input:
+  vectors: app/assets/svgs
+  templates: app/assets/svgs
+
+output:
+  fonts: app/assets/fonts
+  css: app/assets/stylesheets/fonts
+  preview: app/assets/fonts/styleguide
+
+templates: ['scss-rails', 'preview']

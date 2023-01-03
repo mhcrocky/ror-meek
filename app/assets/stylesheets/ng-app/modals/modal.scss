@@ -1,0 +1,90 @@
+.modal {
+  @include transform-translate(-50%, 0);
+  position: fixed;
+  top: 10vh;
+  bottom: 10vh;
+  right: -50%;
+  left: 50%;
+  z-index: 3;
+  background: #fff;
+  display: block;
+
+  .modal-wrapper {
+    overflow-y: auto;
+
+    width: 50%;
+    height: 100%;
+    float: left;
+    background: #fff;
+    position: relative;
+
+    .logo {
+      margin: 25px auto 0 auto;
+      display: block;
+      text-decoration: none;
+
+      .text {
+        margin-bottom: 20px;
+        font-size: 11px;
+        color: #9f9f9f;
+        letter-spacing: 1px;
+      }
+
+      img {
+        max-width: 100%;
+        margin-left: 8px;
+        margin-bottom: 5px;
+      }
+    }
+
+    .site-form {
+      .info {
+        text-align: left;
+
+        a, .link {
+          color: #5eacd4;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .link { margin: 10px 0; }
+      }
+    }
+  }
+
+  .background-wrapper {
+    width: 50%;
+    height: 100%;
+    float: right;
+    background-size: cover;
+  }
+
+  .modal-close { display: none; }
+}
+
+@include mobile-landscape {
+  .modal {
+    @include mobile-modal;
+
+    .modal-wrapper {
+      .site-form {
+        .info {
+          font-size: 14px;
+
+          .link { margin: 15px 0; }
+        }
+      }
+    }
+
+    .modal-close {
+       @include transform-rotate(45deg);
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #AAA;
+      cursor: pointer;
+      z-index: 1;
+    }
+  }
+}

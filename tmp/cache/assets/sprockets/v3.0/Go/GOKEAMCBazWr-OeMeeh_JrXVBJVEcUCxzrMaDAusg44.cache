@@ -1,0 +1,12 @@
+I"4(function() {
+  angular.module("Meek").controller("ErrorsController", function($rootScope, ApplicationService) {
+    $rootScope.$state.go('/404');
+    $rootScope.head.clearTags();
+    return $rootScope.head.setMetaTag({
+      name: 'prerender-status-code',
+      content: '404'
+    });
+  });
+
+}).call(this);
+:ET

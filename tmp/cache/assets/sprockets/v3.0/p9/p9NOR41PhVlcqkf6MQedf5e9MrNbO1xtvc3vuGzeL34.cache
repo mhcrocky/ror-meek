@@ -1,0 +1,100 @@
+I"¯(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('FormService', function($http) {
+    var Form;
+    Form = (function() {
+      function Form() {
+        this.clearErrors = bind(this.clearErrors, this);
+        this.displayErrors = bind(this.displayErrors, this);
+        this.serializeForm = bind(this.serializeForm, this);
+        this.submit = bind(this.submit, this);
+      }
+
+      Form.prototype.submit = function($form) {
+        if ($('input[type="file"]', $form).length > 0) {
+          return $http({
+            url: $form.attr('action'),
+            method: $form.attr('method'),
+            data: this.serializeForm($form),
+            transformRequest: angular.identity,
+            headers: {
+              'Content-Type': void 0
+            }
+          });
+        } else {
+          return $http({
+            url: $form.attr('action'),
+            method: $form.attr('method'),
+            data: this.serializeForm($form)
+          });
+        }
+      };
+
+      Form.prototype.serializeForm = function($form) {
+        var $input, data, i, input, len, ref;
+        if ($('input[type="file"]', $form).length > 0) {
+          data = new FormData();
+          ref = $('input, select, textarea', $form);
+          for (i = 0, len = ref.length; i < len; i++) {
+            input = ref[i];
+            $input = $(input);
+            if ($input.attr('type') === 'file') {
+              if (input.files.length > 0) {
+                data.append($input.attr('name'), input.files[0]);
+              }
+            } else {
+              data.append($input.attr('name'), $input.val());
+            }
+          }
+        } else {
+          data = $form.serializeJSON();
+        }
+        return data;
+      };
+
+      Form.prototype.displayErrors = function($form, data) {
+        var $group, $input, errors, input, messages;
+        errors = this.formatErrors(data);
+        for (input in errors) {
+          messages = errors[input];
+          $input = $form.find("input[name=" + input + "], input[name*=\"[" + input + "]\"], select[name=" + input + "], select[name*=\"[" + input + "]\"], textarea[name=" + input + "], textarea[name*=\"[" + input + "]\"]");
+          if ($input.length > 0) {
+            $group = $input.parents('.input-parent');
+            $group.addClass('has-error');
+            $group.append("<p class='help-block error-message'>" + (messages.join("<br/>")) + "</p>");
+          }
+        }
+      };
+
+      Form.prototype.clearErrors = function($form) {
+        $form.find('.has-error').removeClass('has-error');
+        $form.find('p.error-message').remove();
+      };
+
+      Form.prototype.clearFields = function($form) {
+        $form.find('input').val('');
+        return $form.find('textarea').val('');
+      };
+
+      Form.prototype.formatErrors = function(data) {
+        if (data.errors == null) {
+          data.errors = {};
+        }
+        if (data.errors.base == null) {
+          data.errors.base = [];
+        }
+        if (data.error != null) {
+          data.errors['base'].push(data.error);
+        }
+        return data.errors;
+      };
+
+      return Form;
+
+    })();
+    return new Form();
+  });
+
+}).call(this);
+:ET

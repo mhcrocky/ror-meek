@@ -1,0 +1,5 @@
+I"Œ(function() {
+  $.trumbowyg.svgPath = "/assets/icons-fe098badb0ac3dc18a018270acbf50d316d737cf67a8fb6e9d7bc130edac72b4.svg";
+
+}).call(this);
+:ET

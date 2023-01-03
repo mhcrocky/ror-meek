@@ -1,0 +1,75 @@
+I"/	(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('FavoriteService', function($http, AlertService, ModalService, AuthenticationService, Favorite) {
+    var FavoriteService;
+    FavoriteService = (function() {
+      function FavoriteService() {
+        this.addToFavorite = bind(this.addToFavorite, this);
+      }
+
+      FavoriteService.prototype.addToFavorite = function(id, type) {
+        var data;
+        if (AuthenticationService.isAuthenticated()) {
+          data = {
+            favoritable_type: type,
+            favoritable_id: id
+          };
+          this._create(data);
+        } else {
+          ModalService.signInDialog();
+        }
+      };
+
+      FavoriteService.prototype._create = function(data) {
+        Favorite.save({
+          favorite: data
+        }, (function(responce) {
+          AlertService.display('Successfully added to your favorites.', 'success');
+        }), function() {
+          AlertService.display('Already in your favorites.', 'warning');
+        });
+      };
+
+      FavoriteService.prototype._delete = function(data) {
+        Favorite["delete"]({
+          id: data.favoritable_id,
+          favorite_type: data.favoritable_type
+        }, (function(responce) {
+          AlertService.display('Successfully removed from your favorites.', 'success');
+        }), function() {
+          AlertService.display('Not in your favorites.', 'warning');
+        });
+      };
+
+      FavoriteService.prototype.setDefaultRadio = function(radioStationId) {
+        var result;
+        if (AuthenticationService.isAuthenticated()) {
+          result = $http({
+            url: '/api/user/account.json',
+            method: 'PATCH',
+            data: {
+              user: {
+                radio_station_id: radioStationId
+              }
+            }
+          });
+          result.success(function() {
+            AlertService.display('Your defualt radio station has been set', 'success');
+          });
+          result.error(function() {
+            AlertService.display('There was a problem setting your default radio station', 'warning');
+          });
+        } else {
+          ModalService.signInDialog();
+        }
+      };
+
+      return FavoriteService;
+
+    })();
+    return new FavoriteService();
+  });
+
+}).call(this);
+:ET

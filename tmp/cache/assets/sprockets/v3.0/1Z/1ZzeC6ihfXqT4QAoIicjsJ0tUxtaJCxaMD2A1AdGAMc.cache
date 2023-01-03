@@ -1,0 +1,7 @@
+I"Ä(function() {
+  $(document).ready(setTimeout(function() {
+    return $('<br/><p>Signup placeholder: ##SIGNUP##</p>').insertBefore('label[for*=landing_page_content]');
+  }, 1000));
+
+}).call(this);
+:ET

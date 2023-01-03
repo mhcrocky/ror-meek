@@ -1,0 +1,11 @@
+.modal.account-details {
+  .modal-wrapper {
+    .site-form {
+      .email {
+        label {
+          &:before { margin-top: 4px; }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+#motivation-block {
+  height: 740px;
+  width: 100%;
+  background: url(image-path('be_courageous.png'));
+  background-size: cover;
+  position: relative;
+
+  .text-wrapper {
+    padding-top: 300px;
+    padding-bottom: $main-left-right-offset;
+    display: inline-block;
+  }
+
+  .main-header {
+    font-family: $chronicle-disp-semibold, $helvetica-neue, $open-regular;
+    font-size: 100px;
+    color: #fff;
+  }
+
+  .divblock {
+    height: 10px;
+    width: 90px;
+    background-color: #5f7c9b;
+  }
+
+  .underheader {
+    max-width: 690px;
+    margin-top: 30px;
+    font-family: $chronicle-disp-semibold-ital, $helvetica-neue, $open-regular;
+    font-size: 20px;
+    color: #fff;
+
+    b {
+      font-family: $helvetica-neue, $open-regular;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+
+  .footer {
+    width: 100%;
+    height: 85px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: $savoy-reugular, $helvetica-neue, $open-regular;
+    font-size: 18px;
+    color: #fff;
+    line-height: 85px;
+
+    ul {
+      margin: 0;
+
+      li {
+        padding: 0 25px;
+        display: inline-block;
+
+        &.logo img {
+          width: 125px;
+          margin-top: -20px;
+          vertical-align: middle;
+        }
+
+        &:first-child {
+          padding-left: 0;
+          border-right: 1px solid #fff;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  #motivation-block {
+    .text-wrapper { display: inline-block; }
+
+    .main-header {
+      font-size: 80px;
+      line-height: 80px;
+    }
+
+    .footer { font-size: 12px; }
+  }
+}
+
+@include mobile-landscape {
+  #motivation-block {
+    height: 540px;
+    background-position-x: 63%;
+
+    .text-wrapper {
+      padding-top: 200px;
+      display: inline-block;
+    }
+
+    .main-header {
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    .divblock { margin-top: 15px; }
+    .underheader { margin-top: 15px; }
+
+    .footer {
+      line-height: 40px;
+
+      ul {
+        li {
+          padding: 0;
+          display: block;
+
+          &:first-child { border-right: 0; }
+        }
+      }
+    }
+  }
+}

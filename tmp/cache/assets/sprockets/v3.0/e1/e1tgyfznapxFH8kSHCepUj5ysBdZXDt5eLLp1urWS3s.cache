@@ -1,0 +1,5 @@
+I"®(function() {
+  angular.module("Meek").controller("StaticPagesController", function($rootScope, $sce, $scope, $location, StaticPage, ApplicationService) {});
+
+}).call(this);
+:ET

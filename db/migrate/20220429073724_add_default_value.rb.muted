@@ -1,0 +1,27 @@
+class AddDefaultValue < ActiveRecord::Migration[7.0]
+  def up
+    change_column :articles, :description, :text, default: ''
+    change_column :articles, :short_description, :text, default: ''
+    change_column :articles, :tags, :string, default: ''
+
+    change_column :posts, :body, :text, default: ''
+    change_column :posts, :short_description, :text, default: ''
+    change_column :posts, :tags, :string, default: ''
+
+    change_column :episodes, :transcription, :text, default: ''
+    change_column :episodes, :tags, :string, default: ''
+  end
+
+  def down
+    change_column :articles, :description, :text
+    change_column :articles, :short_description, :text
+    change_column :articles, :tags, :string
+
+    change_column :posts, :body, :text
+    change_column :posts, :short_description, :text
+    change_column :posts, :tags, :string
+
+    change_column :episodes, :transcription, :text
+    change_column :episodes, :tags, :string
+  end
+end

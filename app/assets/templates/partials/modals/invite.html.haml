@@ -1,0 +1,30 @@
+%script{ type: 'text/ng-template', id: 'inviteFriend' }
+  .modal.modal-invite
+    .icon.icon-plus-bold.modal-close{ 'ng-click': 'modal.closeAll()' }
+    .modal-wrapper
+      %a.logo{ 'ui-sref': 'home' }
+        %img{ src: image_path('logos/logo_invite.png'), style: 'border-style: none' }
+        .text-support Invite Your Friends to Meek via Email
+      .icon-mail-invite
+
+      %form.site-form{ action: '/api/invitation.json', method: :post, 'ng-submit': 'invitable.submit($event)' }
+        .input-parent
+          %input{ type: 'hidden', name: 'base' }
+
+        .input-parent
+          %input.field{ name: 'invite[friend_name]', placeholder: "Friend’s Name" }
+
+        .input-parent
+          %input.field{ type: 'email', name: 'invite[recipient_email]', placeholder: "Friend’s Email Address" }
+
+        .input-parent
+          %textarea.field{ name: 'invite[subject]', placeholder: 'Subject', rows: '1' }
+
+        .input-parent
+          %textarea.field{ name: 'invite[message]', placeholder: 'Message', rows: '4' }
+
+        .input-parent
+          %button.btn-submit{ type: 'submit' } Send Invite
+        %br
+        %br
+    .background-wrapper

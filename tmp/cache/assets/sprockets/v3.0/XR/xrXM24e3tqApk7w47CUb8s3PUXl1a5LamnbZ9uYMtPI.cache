@@ -1,0 +1,8 @@
+I"^(function() {
+  angular.module("Meek").controller("HomeController", function($state, $rootScope, $scope, $sce, Background, TrendEpisodes, TrendLatests, TrendPodcastsToTry, RecentEpisodes, AuthenticationService, ApplicationService, Auth) {
+    $rootScope.head.setAllMetaInformation();
+    return $scope.selectedTab = 'stations';
+  });
+
+}).call(this);
+:ET

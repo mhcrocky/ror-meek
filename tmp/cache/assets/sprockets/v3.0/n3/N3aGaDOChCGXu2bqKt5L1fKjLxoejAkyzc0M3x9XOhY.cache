@@ -1,0 +1,82 @@
+I"ò(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('ApplicationService', function($location, $rootScope, $state, $cookies, $localStorage, $sce, Background, Category, AlertService, AuthenticationService, FavoriteService, FeedbackService, FormService, HeadService, Layout, ModalService, PlayerService, ShareService, SideNavigationService, SearcherService, InvitableService, PlayerInfoService, DurationService, AccountService, NotifyFriendService, ViewItemsService, VideoPlayerService) {
+    var Application;
+    $rootScope.alert = AlertService;
+    $rootScope.auth = AuthenticationService;
+    $rootScope.categories = Category.query();
+    $rootScope.favorite = FavoriteService;
+    $rootScope.form = FormService;
+    $rootScope.head = HeadService;
+    $rootScope.player = PlayerService;
+    $rootScope.videoPlayer = VideoPlayerService;
+    $rootScope.share = ShareService;
+    $rootScope.sideNav = SideNavigationService;
+    $rootScope.$state = $state;
+    $rootScope.search = SearcherService;
+    $rootScope.invitable = InvitableService;
+    $rootScope.modal = ModalService;
+    $rootScope.playerInfo = PlayerInfoService;
+    $rootScope.duration = DurationService;
+    $rootScope.editAccount = AccountService;
+    $rootScope.notifyFriend = NotifyFriendService;
+    $rootScope.listItemView = ViewItemsService;
+    $rootScope.meekCookies = $cookies;
+    $rootScope.setCookiesAllowed = function() {
+      return $localStorage.meek_cookies_allowed = true;
+    };
+    $rootScope.isCookiesAllowed = function() {
+      var allowed;
+      allowed = $localStorage.meek_cookies_allowed;
+      return Boolean(allowed);
+    };
+    Application = (function() {
+      function Application() {
+        this.rememberLocation = bind(this.rememberLocation, this);
+        this.showAlertFromCookies = bind(this.showAlertFromCookies, this);
+        this.setCurrentLayout();
+        this.showAlertFromCookies();
+        $rootScope.$on('$stateChangeSuccess', (function(_this) {
+          return function(event, to, toParams, from, fromParams) {
+            _this.rememberLocation(to.name, toParams);
+            _this.setCurrentLayout();
+            return _this.showAlertFromCookies();
+          };
+        })(this));
+      }
+
+      Application.prototype.showAlertFromCookies = function() {
+        var message;
+        message = $rootScope.meekCookies.get('error_message_meek');
+        if (message) {
+          $rootScope.meekCookies.remove('error_message_meek');
+          message = message.replace(/\+/g, ' ');
+          return AlertService.display(message, 'warning');
+        }
+      };
+
+      Application.prototype.setCurrentLayout = function() {
+        $rootScope.currentLayout = 'default';
+        if ($rootScope.$state.includes('welcome.*')) {
+          return $rootScope.currentLayout = 'welcome';
+        }
+      };
+
+      Application.prototype.rememberLocation = function(toName, toParams) {
+        var currentPath;
+        if ($rootScope.$state.includes('welcome.*')) {
+          return;
+        }
+        currentPath = $rootScope.$state.href(toName, toParams);
+        return $rootScope.meekCookies.put('previouseState', currentPath);
+      };
+
+      return Application;
+
+    })();
+    return new Application();
+  });
+
+}).call(this);
+:ET

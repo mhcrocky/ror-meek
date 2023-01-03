@@ -1,0 +1,18 @@
+I"{(function() {
+  angular.module("Meek").filter("truncate", function() {
+    return function(value, limit) {
+      if (!value) {
+        return '';
+      }
+      if (!limit) {
+        return value;
+      }
+      if (value.length <= limit) {
+        return value;
+      }
+      return value.slice(0, limit).replace(/[^\s]+$/g, '').slice(0, -1) + '...';
+    };
+  });
+
+}).call(this);
+:ET

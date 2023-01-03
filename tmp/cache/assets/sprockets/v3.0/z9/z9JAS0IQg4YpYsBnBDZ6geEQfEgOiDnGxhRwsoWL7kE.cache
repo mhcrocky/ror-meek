@@ -1,0 +1,5 @@
+I"¢(function() {
+  angular.module('Meek').controller('SearchController', function($rootScope, $scope, $stateParams, ApplicationService, Search) {});
+
+}).call(this);
+:ET

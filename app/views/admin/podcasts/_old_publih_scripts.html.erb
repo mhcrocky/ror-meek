@@ -1,0 +1,32 @@
+<script type='text/javascript'>
+
+  $(function() {
+    // Show Page
+    var isOldPublishSet = $('.row-autopublish_old').data('autopublish_old')
+
+    if (!isOldPublishSet) {
+      $('.row-autopublish_old_start_date').hide()
+    }
+
+    // Edit page
+    var oldPublishCheckbox = $('#podcast_autopublish_old');
+    var oldPublishImput = $('#podcast_autopublish_old_date_input');
+    var isChecked = undefined;
+
+    function toggleOldPublishDateInput() {
+      isChecked = oldPublishCheckbox.is(':checked');
+
+      if (isChecked) {
+        oldPublishImput.show();
+      } else {
+        oldPublishImput.hide();
+      };
+    };
+
+    toggleOldPublishDateInput();
+
+    oldPublishCheckbox.on('change', function() {
+      toggleOldPublishDateInput();
+    });
+  });
+</script>

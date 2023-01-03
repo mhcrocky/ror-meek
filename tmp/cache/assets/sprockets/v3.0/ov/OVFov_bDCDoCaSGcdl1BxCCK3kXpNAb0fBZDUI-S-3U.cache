@@ -1,0 +1,67 @@
+I"ë(function() {
+  angular.module("Meek").controller("ArticlesController", function($sce, $http, $rootScope, $scope, $stateParams, $timeout, Category, Article, Post, ApplicationService) {
+    $scope.category = Category.get({
+      id: $stateParams.categoryId
+    });
+    $scope.article = Article.get({
+      id: $stateParams.id
+    }, function(article) {
+      if (article.noindex) {
+        $rootScope.head.setMetaTag({
+          name: 'robots',
+          content: 'noindex'
+        });
+      }
+      $rootScope.head.setAllMetaInformation({
+        title: article.meta_title,
+        description: article.meta_description,
+        imagePath: article.image,
+        googlebotImage: article.googlebot
+      });
+      $scope.htmlSafeDescription = $sce.trustAsHtml(article.description);
+      return $scope.schema_content = $sce.trustAsHtml(article.schema);
+    });
+    $scope.searchQuery = {
+      text: ''
+    };
+    $scope.pages = [];
+    $scope.posts = [];
+    $scope.postsCount = null;
+    $scope.postsNextPage = null;
+    $scope.postActive = null;
+    $scope.loadMorePosts = function(page, searchQuery) {
+      if (!page) {
+        return;
+      }
+      if (page === 1) {
+        $scope.pages = [];
+        $scope.posts = [];
+      }
+      return Post.get({
+        articleId: $stateParams.id,
+        page: page,
+        search_query: searchQuery
+      }, function(response) {
+        $scope.pages[page] = response.data;
+        $scope.posts = $scope.pages.flatten();
+        $scope.postsCount = response.pagination.total;
+        return $scope.postsNextPage = response.pagination.next;
+      });
+    };
+    $scope.loadMorePosts(1);
+    $scope.toggleActive = function(post, event) {
+      event.stopPropagation();
+      return $timeout(function() {
+        return $scope.postActive = post.id;
+      });
+    };
+    $scope.toggleActivePost = function(post) {
+      return window.open(post.stream_url);
+    };
+    return $scope.isActive = function(post) {
+      return post.id === $scope.postActive;
+    };
+  });
+
+}).call(this);
+:ET

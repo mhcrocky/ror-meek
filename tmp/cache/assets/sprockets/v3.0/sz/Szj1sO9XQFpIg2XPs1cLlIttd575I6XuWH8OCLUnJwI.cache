@@ -1,0 +1,13 @@
+I"è(function() {
+  angular.module("Meek").factory("StaticPage", function($resource) {
+    return $resource("/api/static_pages/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,5 @@
+.switcher-wrapper
+  .switcher-item{ 'ng-click': "listItemView.setView('grid-view')", 'ng-class': "{'active': listItemView.currentView() === 'grid-view' }" }
+    .icon-grid
+  .switcher-item{ 'ng-click': "listItemView.setView('list-view')", 'ng-class': "{'active': listItemView.currentView() === 'list-view' }" }
+    .icon-list

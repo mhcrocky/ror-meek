@@ -1,0 +1,120 @@
+#player.jp-jplayer
+
+#meek-player
+  .player-seek-bar-wrap
+    .player-seek-bar.new-jp-seek-bar
+      .player-seek-duration-bar.new-jp-play-bar
+
+  .player-container
+    .player-main
+      .player-section.player-song-card
+        %img
+        .song-card-details
+          .song-card-title-row
+            .song-card-title
+          .song-card-user-description-row
+            .song-card-user-description
+
+      .player-section.player-info
+        .player-button
+          .icon-share-alt-solid
+            %span Share
+        .player-info-container
+          .player-info-image-container
+            %img.player-info-image
+
+            .player-info-description
+              .type
+
+              .description-wrapper
+                .title
+                .icon.icon-heart
+                  12,345
+
+          .player-buttons-table
+            .row
+              .cell
+                .icon.icon-facebook.soc-facebook{ 'ng-click' => "playerInfo.shareBy('facebook')" }
+                .cell-text
+                  Share on
+                  %span Facebook
+              .cell
+                .icon.icon-twitter.soc-twitter{ 'ng-click' => "playerInfo.shareBy('twitter')" }
+                .cell-text
+                  Share on
+                  %span Twitter
+              .cell
+                .icon.icon-pinterest.soc-pinterest{ 'ng-click' => "playerInfo.shareBy('pinterest')" }
+                .cell-text
+                  Share on
+                  %span Pinterest
+
+            .row.large
+              .cell{ 'ng-click' => 'playerInfo.addToFavorite()' }
+                .icon.icon-heart.add-favourite.active
+                .cell-text
+                  Add to
+                  %span Favorites
+
+              %a.cell.episodePage.podcast-cell{ 'ng-click' => 'playerInfo.goToEpisodePage()' }
+                .icon.icon-player-link
+                .cell-text
+                  %span Episode
+                  Page
+              %a.cell.podcastPage.podcast-cell{ 'ng-click' => 'playerInfo.goToPodcastPage()' }
+                .icon.icon-player-link
+                .cell-text
+                  %span Podcast
+                  Page
+
+              .cell.radio-cell{ 'ng-click' => 'playerInfo.setAsDefault()' }
+                .icon.icon-microphone
+                .cell-text
+                  Set as
+                  %span Default
+              %a.cell.radioPage.radio-cell{ 'ng-click' => 'playerInfo.goToRadioStationPage()' }
+                .icon.icon-podcast
+                .cell-text
+                  %span Radio
+                  Page
+
+              .cell{ 'ng-if' => 'auth.isAuthenticated()', 'ng-click' => 'playerInfo.shareViaEmail()' }
+                .icon.icon-email.soc-email
+                .cell-text
+                  %span Email
+
+      .player-section
+        .player-button
+          .icon.icon-button-play.new-jp-play
+        .player-button
+          .icon.icon-pause.new-jp-pause
+        .player-button
+          .icon.icon-button-stop.new-jp-stop
+
+      .player-section.player-volume
+        .player-button
+          .icon.icon-button-0sound.new-jp-mute
+        .player-button
+          .icon.icon-button-0sound.new-jp-unmute
+        .player-button
+          .volume-seek-bar-wrap
+            .volume-seek-bar.new-jp-volume-bar
+              .volume-seek-duration-bar.new-jp-volume-bar-value
+                .volume-seek-handle
+        .player-button
+          .icon.icon-button-100sound.new-jp-volume-max.max-sound
+
+      .player-section.player-timer
+        .player-time.new-jp-current-time
+        .player-time.divider /
+        .player-time.new-jp-duration
+
+      .player-section.social-info
+        .player-button
+          %a.icon.icon-twitter{ href: 'https://twitter.com/meekword', target: '_blank' }
+        .player-button
+          %a.icon.icon-facebook{ href: 'https://www.facebook.com/meekword', target: '_blank' }
+        .player-button
+          %a.icon.icon-instagram{ href: 'https://www.instagram.com/meekgrams', target: '_blank' }
+        .player-button
+          %a.icon.icon-pinterest{ href: 'https://www.pinterest.com/meekword', target: '_blank' }

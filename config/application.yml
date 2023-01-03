@@ -1,0 +1,78 @@
+
+  # BB Added in 7.0 upgrade
+  # RAILS_ENV: "development"
+  
+  # Devise
+  DEVICE_SECRET_KEY: "5a4bd5134b65ae72b8a49806d4232b01637b0bb2923fa2ead51a603e823888d684f70b62d9514364925f2672328c78fff2a395015ede13f4059d58c33fceccfa"
+  # Mailchimp
+  # mailchimp_api_key: "ebdba5914736c6eeb41c5192ecbb7221-us10"
+  # mailchimp_list_id: "d095931549"
+
+  # Mail Sending Credentials:
+  MAIL_USERNAME: 'xxx'
+  MAIL_PASSWORD: 'xxx'
+
+  ACTIVE_CAMPAIGN_URL: 'url'
+  ACTIVE_CAMPAIGN_KEY: 'key'
+  ACTIVE_CAMPAIGN_MEEK_SUBCRIBERS_LIST_ID: 'active campaign list id'
+
+  # customer.io
+  CIO_SITE_ID: 'ab8c6590543c810ba534'
+  CIO_SITE_KEY: 'e8f9337099173ee5cd4b'
+
+  # Prerender
+  # PRERENDER_TOKEN_OLD: "3v5q0M7aGxjP3t58xPYa"
+  PRERENDER_TOKEN: "9xpO7QFOsMAzETMVNUHU"
+
+  # # Facebook
+  # facebook_key: "784099628324019"
+  # facebook_secret: "ea383d0aa8941272699359a0d0966325"
+
+  # Twitter
+  TWITTER_KEY: "s6TZ3clltLHhMxP77ZvDFNiwO"
+  TWITTER_SECRET: "dubJ3oxrRVibBj7n2JlZ1lRNOGHNtunGTTGDemHjjHphHzDRbd"
+
+  SECRET_KEY_BASE: "67c9bf3d2b2b6bfe01ed95348a43c82e42f0f31cf6711eecd5e09973af70b044b7322cb1c05407b9a612c267efa2d304227896e47f74dfa386d4e4cf002c23e6"
+
+  # Database
+  DB_NAME: "meek_development_pg"
+  #DB_USERNAME: "pe"
+  DB_USERNAME: "postgres" # TEMP ADDED TO DEBUG
+  DB_PASSWORD: "5432"
+  DB_HOST: "localhost"
+  DB_POOL: "10"
+
+  DB_NAME_TEST: "meek_test_pg"
+
+  # Support email
+  SUPPORT_EMAIL: 'meek@anahoret.com'
+
+  # Facebook
+  FACEBOOK_KEY: "1644675302451196"
+  FACEBOOK_SECRET: "e2eaa771205d1614ad58544d5b167afe"
+  # Facebook share token
+  FACEBOOK_PAGE: "stagingmeekdev"
+  FACEBOOK_ACCESS_TOKEN: "CAAXX0s8sZAZCwBACePMsYuwwI0qkYuarpC01Xld6qgDkxn6FfpLm1olUU2ZCZChRhuD33B1BxnbdXY8Hz6NaMQjiT9R99KlMapMYVdBCxtSNS5ltBqONZAMxQFKEbUc6CRn96wiGlunOiqW845TTKwrwH93wDMmRnUXvCArfLfTpV9nPZALlhT"
+  # facebook_page: "meekgrowth"
+  # facebook_access_token: "EAALJImvQlLMBANRZAGV5c4jShEi4ZCJ8KWxCb07t7LV8ZBgTeu1foSfjaXWkQUvia25ZCQ29swhj4Npfxsgw1jpw4OcMUhFMff3X2gUJ7mh1R8QFZA3BrzJWyhzW4xNZC0cxJveqwE2ZC9NvVp4GtNzed0cusxr6m8ZD"
+
+  # Vimeo secrets.
+  # Client Identifier: "dfdb6d90ad5f07e6e15155e159b6528f8a2c9930"
+  # Client Secret: "mbQjKljiUgLbMj0w57XGMEnKcZU+WLK1EQVgm4jXvER9PVIjdX4O3Sc6LoyhyaCJiyP1zS1F3brn2KvQLmWLsTc1hfu0FbN37BMbkR74dP4pRVH19CMlGRXByXSkVKJx"
+  # vimeo_access_code = Get base64 of "client_id + ':' + client_secret"
+  VIMEO_ACCESS_CODE: "ZGZkYjZkOTBhZDVmMDdlNmUxNTE1NWUxNTliNjUyOGY4YTJjOTkzMDptYlFqS2xqaVVnTGJNajB3NTdYR01FbktjWlUrV0xLMUVRVmdtNGpYdkVSOVBWSWpkWDRPM1NjNkxveWh5YUNKaXlQMXpTMUYzYnJuMkt2UUxtV0xzVGMxaGZ1MEZiTjM3Qk1ia1I3NGRQNHBSVkgxOUNNbEdSWEJ5WFNrVktKeA=="
+
+  STORAGE_PROJECT: 'find'
+  STORAGE_BUCKET: 'in'
+  GOOGLE_API_CREDS: 'tracker'
+  
+  EPISODES_STREAM_MAX_REDIRECT_COUNT: 6
+
+  BLOG_URL: http://localhost:3000/blog/
+  LOGO_NAME: cdf-capital.png
+  # HOST: http://161.35.9.171
+  HOST: http://localhost:3000/
+  PRERENDER_ENABLED: True
+  MAIL_REPLY_TO: no_reply@cdf.capital.org
+  USER_ICON_COLOR: black
+  TENANT: cdfcapital

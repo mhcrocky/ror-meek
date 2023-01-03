@@ -1,0 +1,52 @@
+.list-box {
+  width: 100%;
+  margin: 0;
+  font-family: $helvetica-neue, $open-light;
+
+  .list-box-item {
+    outline: none;
+
+    .item-box-image {
+      @include play-with-fade;
+    }
+
+    .item-box-category {
+      @include clearfix;
+      font-size: 14px;
+
+      .title {
+        color: #4d98b7;
+        float: left;
+        padding: 6px 0;
+      }
+
+      .time {
+        float: right;
+        color: #2d2d2d;
+        font-weight: bold;
+      }
+    }
+
+    .item-box-name {
+      margin-top: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      display: block;
+      color: #2d2d2d;
+      text-decoration: underline;
+      overflow: hidden;
+
+      &:hover { color: lighten(#2d2d2d, 15%); }
+    }
+
+    .item-box-description {
+      max-height: 180px;
+      margin: 7px 0 14px 0;
+      font-size: 15px;
+      color: #838383;
+      overflow: hidden;
+
+      &.list-view { display: none; }
+    }
+  }
+}

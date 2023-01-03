@@ -1,0 +1,9 @@
+I"Å(function() {
+  angular.module('Meek').factory('RecentEpisodes', function($resource) {
+    return $resource('/api/user/recent/resent_episodes', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

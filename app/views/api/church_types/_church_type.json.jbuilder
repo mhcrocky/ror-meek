@@ -1,0 +1,1 @@
+json.(church_type, :id, :name)

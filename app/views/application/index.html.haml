@@ -1,0 +1,30 @@
+= render(partial: 'shared/google_tag_manager') if Rails.env.production?
+
+%div{ 'ng-class': 'currentLayout' }
+  %header#main-header
+
+  .main-view-container
+    %toaster-container
+    %article.container-fluid(ui-view){'autoscroll': 'true'}
+    %article#react-container{'autoscroll': 'true'}
+    #side-navigation-wrapper(ng-include="'partials/sidebar_navigation.html'")
+
+
+  %div(ng-include="'video/player.html'")
+  %div(ng-include="'audio/player.html'")
+
+%div(ng-include="'partials/cookies.html'")
+%div(ng-include="'partials/modals/sign_in.html'")
+%div(ng-include="'partials/modals/sign_up.html'")
+%div(ng-include="'partials/modals/password_reset.html'")
+%div(ng-include="'partials/modals/resend_confirmation.html'")
+%div(ng-include="'partials/modals/new_password.html'")
+%div(ng-include="'partials/modals/invite.html'")
+%div(ng-include="'partials/modals/edit_contact_info.html'")
+%div(ng-include="'partials/modals/edit_details_info.html'")
+%div(ng-include="'partials/modals/edit_account_info.html'")
+%div(ng-include="'partials/modals/edit_settings_info.html'")
+%div(ng-include="'partials/modals/share_via_email.html'")
+
+%footer#footer.left-right-offset
+  = render(partial: 'partials/footer')

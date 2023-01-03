@@ -1,0 +1,72 @@
+#inside-page.episode {
+  .header-page {
+    .info {
+      span { margin: 0 7px; }
+    }
+  }
+
+  .navigation-wrapper {
+    overflow: hidden;
+    clear: both;
+
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .description {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #6f6f6f;
+      line-height: 1.4em;
+      font-weight: 200;
+    }
+
+    .transcription {
+      font-size: 12px;
+      color: #6f6f6f;
+      line-height: 1.4em;
+      font-weight: 200;
+
+      p {
+        margin-bottom: 20px;
+      }
+    }
+
+    .icon {
+      width: 50px;
+      margin-top: 20px;
+      background: #e5e5e5;
+      display: inline-block;
+      color: #fff;
+      line-height: 50px;
+      text-align: center;
+      cursor: pointer;
+
+      &:hover { background: lighten(#e5e5e5, 5%) }
+    }
+
+    .prev-wrapper {
+      width: 40%;
+      max-width: 320px;
+      float: left;
+    }
+
+    .next-wrapper {
+      width: 40%;
+      max-width: 320px;
+      float: right;
+      text-align: right;
+    }
+  }
+}
+
+@include mobile-portrait {
+  #inside-page.episode {
+    .navigation-wrapper {
+      .title { font-size: 13px; }
+      .description { display: none; }
+      .icon { margin-top: 10px; }
+    }
+  }
+}

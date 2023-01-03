@@ -1,0 +1,61 @@
+I"ª(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").factory('PaginationFactory', function($location) {
+    var Pagination;
+    Pagination = (function() {
+      function Pagination(collection) {
+        this.totalCount = bind(this.totalCount, this);
+        this.lastLink = bind(this.lastLink, this);
+        this.firstLink = bind(this.firstLink, this);
+        this.nLink = bind(this.nLink, this);
+        this.range = bind(this.range, this);
+        this.collection = collection;
+        return this;
+      }
+
+      Pagination.prototype.range = function() {
+        var i, page, range;
+        range = new Array();
+        if (this.collection.last - this.collection.current < 2) {
+          i = -4 + (this.collection.last - this.collection.current);
+        } else {
+          i = -2;
+        }
+        while (range.length < 5) {
+          page = this.collection.current + i;
+          if (page > this.collection.last) {
+            break;
+          }
+          if (page >= 1 && page <= this.collection.last) {
+            range.push(page);
+          }
+          i++;
+        }
+        return range;
+      };
+
+      Pagination.prototype.nLink = function(page) {
+        return ($location.path()) + "?page=" + page;
+      };
+
+      Pagination.prototype.firstLink = function() {
+        return this.nLink(this.collection.first);
+      };
+
+      Pagination.prototype.lastLink = function() {
+        return this.nLink(this.collection.last);
+      };
+
+      Pagination.prototype.totalCount = function() {
+        return this.collection.total;
+      };
+
+      return Pagination;
+
+    })();
+    return Pagination;
+  });
+
+}).call(this);
+:ET

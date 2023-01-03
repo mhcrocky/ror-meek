@@ -1,0 +1,40 @@
+.modal-invite {
+  max-width: 800px;
+  max-height: 640px;
+
+  .modal-wrapper {
+    overflow-y: auto;
+
+    .logo {
+      text-align: center;
+    }
+
+    .icon-mail-invite {
+      margin-bottom: -16px;
+      font-size: 57px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .site-form {
+      .input-parent {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+
+  .background-wrapper { background-image: asset-url('bg_invite.png'); }
+}
+
+@include tablet-portrait {
+  .modal-invite { width: 80vw; }
+}
+
+@include mobile-landscape {
+  .modal-invite {
+    @include mobile-modal;
+    width: 100%;
+  }
+}

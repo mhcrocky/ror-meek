@@ -1,0 +1,13 @@
+I"â(function() {
+  angular.module("Meek").factory("Country", function($resource) {
+    return $resource("/api/countries/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

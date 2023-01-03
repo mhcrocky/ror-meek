@@ -1,0 +1,9 @@
+I"²(function() {
+  angular.module('Meek').factory('TrendPosts', function($resource) {
+    return $resource('/api/trends/posts', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

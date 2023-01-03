@@ -1,0 +1,46 @@
+%script{ type: 'text/ng-template', id: 'editContactInfo' }
+  .modal.contact-info
+    .modal-wrapper
+      .btn-hide.icon-arrow-back{{ 'ng-click': 'modal.closeAll()' }}
+      %h3 Contact Info
+
+      %form.site-form{ action: '/api/user/account.json', method: :put, 'ng-submit' => 'editAccount.accountUpdate($event)' }
+        %input{ type: 'hidden', name: 'user[address_attributes[id]]', 'ng-value' => 'auth.currentUser.address.id' }
+
+        .input-parent
+          %label.icon-mappin Adress:
+
+        .input-parent
+          %label{ for: 'user-city' } City
+          %input#user-city.field{ type: 'text', name: 'user[address_attributes[city]]', 'ng-value' => 'auth.currentUser.address.city' }
+
+        .input-parent
+          %label{ for: 'user-postcode' } ZIP/Postcode
+          %input#user-postcode.field{ type: 'text', name: 'user[address_attributes[postcode]]', 'ng-value' => 'auth.currentUser.address.postcode' }
+
+        .input-parent
+          %label{ for: 'user-country' } Country
+          %select#user-country.field{ name: 'user[address_attributes[country_id]]', 'ng-model' => 'auth.currentUser.address.country', 'ng-options' => 'country.name for country in countries track by country.id', 'ng-change' => 'updateCountry(auth.currentUser.address.country.id)' }
+
+        .input-parent{ 'ng-show' => 'country.regions.length > 0' }
+          %label{ for: 'user-region' } State
+          %select#user-region-id.field{ name: 'user[address_attributes[region_id]]', 'ng-model' => 'auth.currentUser.address.region', 'ng-options' => 'region.name for region in country.regions track by region.id' }
+
+        .input-parent
+          %label.icon-telephone{ for: 'user-telephone' } Telephone:
+          %input#user-telephone.field{ type: 'text', name: 'user[address_attributes[telephone]]', 'ng-value' => 'auth.currentUser.address.telephone' }
+
+        .input-parent.facebook
+          %label.icon-facebook{ for: 'user-Facebook' } Facebook:
+          %input#user-facebook.field{ type: 'text', name: 'user[facebook]', 'ng-value' => 'auth.currentUser.facebook' }
+
+        .input-parent.twitter
+          %label.icon-twitter.soc-twitter{ for: 'user-telephone' } Twitter:
+          %input#user-twitter.field{ type: 'text', name: 'user[twitter]]', 'ng-value' => 'auth.currentUser.twitter' }
+
+        .input-parent.linkedin
+          %label.icon-linkedin.soc-linkedin{ for: 'user-linkedin' } LinkedIn:
+          %input#user-linkedin.field{ type: 'text', name: 'user[linkedin]', 'ng-value' => 'auth.currentUser.linkedin' }
+
+        %button.btn-submit{ type: 'submit' } Save
+        .btn-cancel{{ 'ng-click': 'modal.closeAll()' }} Cancel

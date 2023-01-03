@@ -1,0 +1,105 @@
+.contactus {
+  h1 { margin-bottom: 0; }
+
+  .info-wrapper {
+    padding: 50px 0 130px 0;
+    background: asset-url('bg_contactus2.png') no-repeat top center;
+    background-size: cover;
+    clear: both;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  .description {
+    width: 50%;
+    float:left;
+
+    .logo {
+      margin-bottom: 50px;
+      background: asset_url('logos/logo-fake.png') no-repeat top center;
+    }
+    .text { font-weight: 100; }
+  }
+
+  .adress-wrapper {
+    width: 50%;
+    margin-top: 37px;
+    float: right;
+    position: relative;
+
+    .location {
+      overflow: hidden;
+      clear: both;
+
+      .title {
+        @include title(30px);
+        width: 38%;
+        float: left;
+        color: #aecd04;
+      }
+
+      .office-wrapper {
+        width: 62%;
+        float: right;
+      }
+
+      .office-wrapper {
+        .adress {
+          margin-bottom: 7px;
+          font-size: 24px;
+          font-weight: bold;
+        }
+
+        .details {
+          font-weight: 100;
+          line-height: 43px;
+
+          a { color: #fff; }
+        }
+
+        .office { margin-bottom: 40px; }
+      }
+    }
+  }
+}
+
+@include tablet-portrait {
+  .contactus {
+    .info-wrapper {
+      padding-top: 0;
+      background: none;
+    }
+
+    .description {
+      width: initial;
+      padding-top: 50px;
+      padding-bottom: 120px;
+      float: none;
+      background: asset-url('bg_contactus2.png') no-repeat top center;
+    }
+
+    .adress-wrapper {
+      width: initial;
+      float: none;
+      color: #2d2d2d;
+    }
+  }
+}
+
+@include mobile-landscape {
+  .contactus {
+    .adress-wrapper {
+      .location {
+        .title {
+          width: initial;
+          float: none;
+        }
+
+        .office-wrapper {
+          width: initial;
+          float: none;
+        }
+      }
+    }
+  }
+}

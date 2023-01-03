@@ -1,0 +1,9 @@
+I"Â(function() {
+  angular.module("Meek").factory("FavoritePodcasts", function($resource) {
+    return $resource("/api/user/favorite/podcasts", {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,9 @@
+I"Ì(function() {
+  angular.module('Meek').factory('RecentStationPlays', function($resource) {
+    return $resource('/api/user/recent/radio_stations/:id', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

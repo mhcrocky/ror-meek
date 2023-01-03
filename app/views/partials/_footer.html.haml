@@ -1,0 +1,13 @@
+%ul.bolder-links
+  %li
+    %a.logo{ 'ui-sref': 'home' }
+      // IE10 inline styles
+      %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}"), style: 'border-style: none' }
+
+%ul.lighter-links
+  - Footer.order(:position).each do |item|
+    %li
+      - if item.link.present?
+        %a{href: "#{item.link}"}= item.title 
+      - else 
+        %span= item.title

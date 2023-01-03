@@ -1,0 +1,9 @@
+<% if Rails.env.production? %>
+  User-Agent: *
+  Allow: /
+  Sitemap: <%= current_site_name %>/sitemap.xml
+<% else %>
+  <!-- User-agent: Twitterbot -->
+  <!-- Disallow: -->
+  Disallow: /
+<% end %>

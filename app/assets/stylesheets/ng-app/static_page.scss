@@ -1,0 +1,213 @@
+.static-page {
+  position: relative;
+
+  @include mobile-portrait {
+    .header-page { padding-bottom: 60px; }
+  }
+  @include mobile-landscape {
+    .header-page { padding-bottom: 60px; }
+  }
+  @include tablet-landscape {
+    .header-page { padding-bottom: 60px; }
+  }
+  @include tablet-portrait {
+    .header-page { padding-bottom: 60px; }
+  }
+
+  &.landing-page {
+    .header-page { height: inherit; }
+  }
+
+  &.about, &.cookies {
+    .header-page { background-image: asset-url('bg_about.png'); }
+  }
+
+  &.terms {
+    .header-page { background-image: asset-url('bg_terms_of_use.png'); }
+  }
+
+  &.privacy {
+    .header-page { background-image: asset-url('bg_privacy.png'); }
+  }
+
+  &.feedback {
+    .header-page { background-image: asset-url('bg_feedback.png'); }
+  }
+
+  &.contactus {
+    .header-page { background-image: asset-url('bg_contactus.png'); }
+  }
+
+  &.favorite {
+    .header-page { background-image: asset-url('favorites.png'); }
+  }
+
+  &.static-search {
+    .header-page { background-image: asset-url('favorites.png'); }
+  }
+
+  &.static-404 {
+    .header-page { background-image: asset-url('404.png'); }
+  }
+
+  .list-menu-static-page {
+    margin: 0;
+    background: #f3f3f3;
+    list-style: none;
+    text-align: center;
+
+    .list-menu-static-page-item {
+      display: inline-block;
+
+      &.active {
+        font-weight: bold;
+        background: #fff;
+      }
+
+      a {
+        padding: 0 28px;
+        color: #2d2d2d;
+        line-height: 56px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .list-box {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .site-form {
+    width: 75%;
+    margin: 50px 0;
+
+    input.field { width: 65%; }
+    .btn-submit { width: 150px; }
+  }
+
+  /**
+  * Start Vanilla CSS 1.0.2
+  */
+
+  p, code, pre, kbd {
+    margin:0 0 1.5em 0;
+  }
+  blockquote {
+    margin:0 1.5em 1.5em 1.5em;
+  }
+  cite {
+    font-style: italic;
+  }
+  li ul, li ol {
+    margin:0 1.5em;
+  }
+  ul, ol {
+    margin:0 1.5em 1.5em 2.5em;
+  }
+  ul {
+    list-style-type:disc;
+  }
+  ol {
+    list-style-type:decimal;
+  }
+  ol ol {
+    list-style: upper-alpha;
+  }
+  ol ol ol {
+    list-style: lower-roman;
+  }
+  ol ol ol ol {
+    list-style: lower-alpha;
+  }
+  dl {
+    margin:0 0 1.5em 0;
+  }
+  dl dt {
+    font-weight:bold;
+  }
+  dd {
+    margin-left:1.5em;
+  }
+  table {
+    margin-bottom:1.4em;
+    width:100%;
+  }
+  th {
+    font-weight:bold;
+  }
+  th, td, caption {
+    padding:4px 10px 4px 5px;
+  }
+  tfoot {
+    font-style:italic;
+  }
+  sup, sub {
+    line-height:0;
+  }
+  abbr, acronym {
+    border-bottom: 1px dotted;
+  }
+  address {
+    margin:0 0 1.5em;
+    font-style:italic;
+  }
+  del {
+    text-decoration: line-through;
+  }
+  pre {
+    margin:1.5em 0;
+    white-space:pre;
+  }
+  img.centered, .aligncenter, div.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  img.alignright {
+    display: inline;
+  }
+  img.alignleft {
+    display: inline;
+  }
+  .alignright {
+    float: right;
+    margin-left: 10px;
+  }
+  .alignleft {
+    float: left;
+    margin-right: 10px;
+  }
+  img {
+    max-width: 100%;
+  }
+  * html .clearfix {
+      height: 1%;
+  }
+  * + html .clearfix {
+    display: inline-block;
+  }
+  .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  * html .group {
+    height: 1%;
+  }
+  * + html .group {
+    display: inline-block;
+  }
+  .group:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  /**
+  * End Vanilla CSS
+  */
+}

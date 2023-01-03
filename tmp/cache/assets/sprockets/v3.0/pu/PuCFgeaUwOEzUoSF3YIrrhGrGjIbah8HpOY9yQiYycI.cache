@@ -1,0 +1,110 @@
+I"/(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module('Meek').service('VideoPlayerService', function($rootScope, Layout, ModalService, ShareService) {
+    var VideosPlayer;
+    VideosPlayer = (function() {
+      function VideosPlayer() {
+        this._setShareButtons = bind(this._setShareButtons, this);
+        this._initVideoJS = bind(this._initVideoJS, this);
+        this._createVideoTag = bind(this._createVideoTag, this);
+        this._removeOldVideoPlayer = bind(this._removeOldVideoPlayer, this);
+        this.shareBy = bind(this.shareBy, this);
+        this.openVideoDialog = bind(this.openVideoDialog, this);
+        this.play = bind(this.play, this);
+        this.pause = bind(this.pause, this);
+        this.init = bind(this.init, this);
+      }
+
+      VideosPlayer.prototype.init = function(episode) {
+        $rootScope.player.pause();
+        this._removeOldVideoPlayer();
+        this._createVideoTag();
+        this._initVideoJS(episode);
+        this._setShareButtons(episode);
+        window.pl = this._videoPlayer;
+      };
+
+      VideosPlayer.prototype.pause = function() {
+        this._videoPlayer.pause();
+      };
+
+      VideosPlayer.prototype.play = function() {
+        console.log('.play()', this._videoPlayer.source);
+        this._videoPlayer.play();
+      };
+
+      VideosPlayer.prototype.openVideoDialog = function(episode) {
+        if (!episode["private"] || $rootScope.auth.isAuthenticated()) {
+          this.init(episode);
+          $('#videoDialog').show();
+        } else {
+          ModalService.signInDialog();
+          return;
+        }
+      };
+
+      VideosPlayer.prototype.closeVideoDialog = function() {
+        this._videoPlayer.pause();
+        $('#videoDialog').hide();
+      };
+
+      VideosPlayer.prototype.shareBy = function(type) {
+        ShareService.shareLink(type, {
+          imagePath: this._shareImage,
+          title: this._shareTitle,
+          linkPath: this._sharePath
+        });
+      };
+
+      VideosPlayer.prototype._removeOldVideoPlayer = function() {
+        if (this._videoPlayer) {
+          this._videoPlayer.destroy();
+        }
+      };
+
+      VideosPlayer.prototype._createVideoTag = function() {
+        $('#meek-video-container').empty().append('<video class="video-js"></video>');
+      };
+
+      VideosPlayer.prototype._initVideoJS = function(ep) {
+        this._videoPlayer = new Plyr($('video')[0], {
+          playsinline: true,
+          fullscreen: {
+            enabled: true,
+            fallback: true,
+            iosNative: true
+          }
+        });
+        this._videoPlayer.source = {
+          type: 'video',
+          sources: [
+            {
+              src: ep.stream_url,
+              provider: ep.stream_url_type.split('/')[1]
+            }
+          ]
+        };
+        if (!(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform))) {
+          this._videoPlayer.on('ready', (function(_this) {
+            return function() {
+              return _this.play();
+            };
+          })(this));
+        }
+      };
+
+      VideosPlayer.prototype._setShareButtons = function(ep) {
+        this._sharePath = ep.path;
+        this._shareTitle = ep.name;
+        this._shareImage = ep.image;
+      };
+
+      return VideosPlayer;
+
+    })();
+    return new VideosPlayer;
+  });
+
+}).call(this);
+:ET

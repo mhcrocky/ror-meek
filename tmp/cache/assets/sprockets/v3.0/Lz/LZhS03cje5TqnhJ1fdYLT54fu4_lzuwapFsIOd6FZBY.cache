@@ -1,0 +1,9 @@
+I"Ä(function() {
+  angular.module('Meek').factory('TrendArticlesToTry', function($resource) {
+    return $resource('/api/trends/articles_to_try', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

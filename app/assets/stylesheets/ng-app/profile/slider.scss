@@ -1,0 +1,24 @@
+.slick-slider {
+  &.list-box {
+    &.grid-view {
+      .list-box-item { margin: 0 30px; }
+    }
+  }
+
+  .slick-next,
+  .slick-prev {
+    &:before {
+      color: #4d98b7;
+      font-size: 45px;
+    }
+  }
+
+  .slick-prev { left: -45px; }
+}
+
+@include desktop {
+  .slick-slider {
+    .slick-prev { left: -25px; }
+    .slick-next { right: 0; }
+  }
+}

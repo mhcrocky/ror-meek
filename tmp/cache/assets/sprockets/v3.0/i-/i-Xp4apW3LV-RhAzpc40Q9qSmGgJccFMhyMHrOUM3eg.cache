@@ -1,0 +1,24 @@
+I"(function() {
+  angular.module("Meek").service('Layout', function() {
+    var Layout;
+    Layout = (function() {
+      function Layout() {}
+
+      Layout.prototype.isMobile = function() {
+        return $(window).width() < 768;
+      };
+
+      Layout.prototype.isFacebookApp = function() {
+        var ua;
+        ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1);
+      };
+
+      return Layout;
+
+    })();
+    return new Layout();
+  });
+
+}).call(this);
+:ET

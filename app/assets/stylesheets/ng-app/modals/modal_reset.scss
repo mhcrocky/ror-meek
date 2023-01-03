@@ -1,0 +1,31 @@
+.modal-reset {
+  max-height: 380px;
+  max-width: 800px;
+
+  .modal-wrapper {
+    overflow-y: auto;
+
+    .logo { width: 110px; }
+
+    .site-form {
+      .info {
+        text-align: left;
+
+        a {
+          color: #5eacd4;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .background-wrapper {
+    background-image: asset-url('bg_sign.png');
+  }
+}
+
+@include mobile-landscape {
+  .modal-reset {
+    @include mobile-modal;
+  }
+}

@@ -1,0 +1,76 @@
+.google-schema{ 'ng-bind-html': 'schema_content' }
+#inside-page.episode
+  .header-page{ style: 'background-image: url( {{ podcast.wallpaper }} )' }
+    .header-page-bg
+      .list-breadcrumbs.left-right-offset
+        .list-breadcrumbs-item.uppercase Podcasts
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ng-href': '/{{category.slug}}' } {{ category.name }}
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ng-href': '{{podcast.path}}' } {{ podcast.name }}
+        .list-breadcrumbs-item
+          .last-flex-item-container
+            %span {{ episode.name }}
+
+      .categories
+        {{ podcast.name }}
+      %h1.title
+        %strong
+        {{ episode.name }}
+      .info
+        %a.icon-link{ 'ng-href': '{{podcast.website}}', 'target': '_blank' }
+          Visit the website
+      .info
+        %span.date Published: {{ episode.released_at }}
+        %span.time Length: {{ duration.episodeDuration(episode.duration) }}
+  .btn-play-media.icon-button-play{ 'ng-click': 'player.startPodcast(podcast, episode)', 'ng-if': '!episode.video', 'ng-class': "{ 'icon-pause': player.isAudioPlaying(), 'icon-button-play': !player.isAudioPlaying() }" }
+
+  .list-soc
+    .list-soc-item{ 'ng-click': "favorite.addToFavorite(episode.id, 'Episode')" }>
+      .icon.icon-heart.add-favourite.active
+      .title
+        Add to
+        %span Favorites
+
+    .list-soc-item.separator
+
+    .list-soc-item
+      .icon.icon-facebook.soc-facebook{ 'ng-click': "share.shareLink( 'facebook', { linkPath: episode.path } )" }
+      .title
+        %span Facebook
+
+    .list-soc-item
+      .icon.icon-twitter.soc-twitter{ 'ng-click': "share.shareLink( 'twitter', { title: episode.name, linkPath: episode.path } )" }
+      .title
+        %span Tweet
+        this
+
+    .list-soc-item{ 'ng-if': 'auth.isAuthenticated()' }
+      .icon.icon-email.soc-email{ 'ng-click': 'modal.shareViaEmail(episode.name, episode.path)' }
+      .title
+        %span Email
+
+  %h1.title.left-right-offset
+    Episode Overview
+  .description.left-right-offset{ 'ng-class': "{'active': fullDescription === true}"}
+    %img{ 'ng-src': '{{podcast.image}}' }
+    {{ episode.short_description }}
+    {{ podcast.short_description }}
+
+  %h1.title.left-right-offset{'ng-if': 'episode.transcription'}
+    Episode Details
+  .transcription.left-right-offset{ 'ng-class': "{'active': fullDescription === true}"}
+    %div{ 'ng-bind-html': 'htmlSafeTranscription' }
+
+  .episode.left-right-offset{ 'ng-if': 'episode.video && (auth.isAuthenticated() || !podcast.private)' }
+    .title
+      Video:
+
+    #meek-video-wrapper
+      %meek-video-player-wrapper
+
+      .action-buttons{ 'ng-include': "'video/player_actions.html'" }
+
+  .episode.left-right-offset{ 'ng-if': 'episode.video && podcast.private && !auth.isAuthenticated()' }
+    .title
+      Please sign in to watch this video.

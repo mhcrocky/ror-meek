@@ -1,0 +1,155 @@
+.google-schema{ 'ng-bind-html': 'schema_content' }
+#inside-page.podcast
+  .header-page
+    .header-page-image{ style: 'background-image: url( {{ podcast.wallpaper }} )' }
+    .header-page-bg
+      .list-breadcrumbs.left-right-offset
+        .list-breadcrumbs-item.uppercase Podcasts
+        .list-breadcrumbs-item
+          %a.uppercase{ 'ng-href': '/{{category.slug}}' } {{ category.name }}
+        .list-breadcrumbs-item
+          .last-flex-item-container
+            %span {{podcast.name}}
+
+      .categories.uppercase
+        Podcasts, {{category.name}}
+      %h1.title
+        {{podcast.name}}
+      .info
+        %a.icon-link{ 'ng-href': '{{podcast.website}}', 'target': '_blank' }
+          Visit the website
+  .btn-play-media.icon-button-play{ 'ng-click': 'player.startPodcast(podcast, podcast.current_episode)', 'ng-if': '!podcast.current_episode.video && podcast.current_episode', 'ng-class': "{ 'icon-pause': player.isAudioPlaying(), 'icon-button-play': !player.isAudioPlaying() }"}
+  .btn-play-media.icon-button-play{ 'ng-click': 'videoPlayer.openVideoDialog(podcast.current_episode)', 'ng-if': 'podcast.current_episode.video && podcast.current_episode' }
+
+
+  .list-soc
+    .list-soc-item{ 'ng-click': "favorite.addToFavorite(podcast.id, 'Podcast')" }>
+      .icon.icon-heart.add-favourite.active
+      .title
+        Add to
+        %span Favorites
+
+    .list-soc-item.separator
+
+    .list-soc-item
+      .icon.icon-facebook.soc-facebook{ 'ng-click': "share.shareLink( 'facebook', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+      .title
+        %span Facebook
+
+    .list-soc-item
+      .icon.icon-twitter.soc-twitter{ 'ng-click': "share.shareLink( 'twitter', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+      .title
+        %span Tweet
+        this
+
+    .list-soc-item
+      .icon.icon-pinterest.soc-pinterest{ 'ng-click': "share.shareLink( 'pinterest', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+      .title
+        %span Pinterest
+
+    .list-soc-item{ 'ng-if': 'auth.isAuthenticated()' }
+      .icon.icon-email.soc-email{ 'ng-click': "modal.shareViaEmail(podcast.name, podcast.path)" }
+      .title
+        %span Email
+
+  %h1.title.left-right-offset
+    {{podcast.h1}}
+  .description.left-right-offset{ 'ng-class': "{'active': fullDescription === true}" }
+    %img{ 'ng-src': '{{ podcast.image }}' }
+    %div{ 'ng-bind-html': 'htmlSafeDescription' }
+  .fog.mobile-landscape
+  .read-more
+    .btn-read-more.as-link.mobile-landscape{ 'ng-hide': 'fullDescription === true', 'ng-click': 'fullDescription = true' }
+      Read more
+    .list-soc.mobile-landscape
+      .list-soc-item{ 'ng-click': "favorite.addToFavorite(podcast.id, 'Podcast')" }>
+        .icon.icon-heart.add-favourite.active
+        .title
+          Add to
+          %span Favorites
+
+      .list-soc-item.separator
+
+      .list-soc-item
+        .icon.icon-facebook.soc-facebook{ 'ng-click': "share.shareLink( 'facebook', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+        .title
+          %span Facebook
+
+      .list-soc-item
+        .icon.icon-twitter.soc-twitter{ 'ng-click': "share.shareLink( 'twitter', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+        .title
+          %span Tweet
+          this
+
+      .list-soc-item
+        .icon.icon-pinterest.soc-pinterest{ 'ng-click': "share.shareLink( 'pinterest', { imagePath: podcast.image, title: podcast.name, linkPath: podcast.path } )" }
+        .title
+          %span Pinterest
+
+      .list-soc-item{ 'ng-if': 'auth.isAuthenticated()' }
+        .icon.icon-email.soc-email{ 'ng-click': "modal.shareViaEmail(podcast.name, podcast.path)" }
+        .title
+          %span Email
+
+  .podcast-episodes-container.left-right-offset
+    .title
+      {{ episodesCount }} Episodes
+
+    .sub-title
+      .sub-title-row
+        .sub-title-cell
+          %form.search-form.small{ 'ng-submit': 'loadMoreEpisodes(1, searchQuery.text)', 'ng-include': "'partials/header/search.html'" }
+
+        .sub-title-cell.right{ 'ng-show': 'episodesCount' }
+          %span Time
+          %span Published
+          %span Details
+
+    .list-media-line{ 'ng-show': 'episodesCount'}
+      .list-media-line-item{ 'ng-repeat': 'episode in episodes',
+                             'ng-class': "{ 'playing': player.isCurrentTrack(episode), 'active': isActive(episode) }",
+                             'ng-mouseenter': 'toggleActiveEpisode(episode, $event)',
+                             'ng-click':  'toggleActiveEpisode(episode, $event, $timeout)' }
+
+        / Video Episode
+        .media-item{ 'ng-if': 'episode.video' }
+          .media-item-action{ 'ng-click': 'videoPlayer.openVideoDialog(episode)' }
+            .btn-play-media.icon-button-play
+            .number {{ episodesCount - $index }}
+
+
+        / Audio Episode
+        .media-item{ 'ng-if': '!episode.video && !player.isCurrentTrack(episode)' }
+          .media-item-action{ 'ng-click': 'player.startPodcast(podcast, episode)' }
+            .btn-play-media.icon-button-play
+            .number {{ episodesCount - $index }}
+
+
+        / Current Audio Episode
+        .media-item{ 'ng-if': '!episode.video && player.isCurrentTrack(episode)' }
+          .media-item-action
+            .btn-play-media{ 'ng-class': "{ 'icon-pause': player.isAudioPlaying(), 'icon-button-play': !player.isAudioPlaying() }", 'ng-click': 'player.startPodcast(podcast, episode)' }
+            .number {{ episodesCount - $index }}
+
+
+        .media-item.center-side
+          .media-item-table
+            %div{ 'ng-class': "{'icon-film': episode.video}" }
+            .name{ 'ng-if': "!isActive(episode)" }
+              {{ episode.name }}
+            %a.name.as-link{ 'ng-if': 'isActive(episode) && (auth.isAuthenticated() || !podcast.private)', 'ng-href': '{{episode.path}}', 'ng-attr-rel': "{{ episode.video ? 'nofollow' : undefined }}" }
+              {{ episode.name }}
+            %a.name.as-link{ 'ng-if': 'isActive(episode) && podcast.private && !auth.isAuthenticated()', 'ng-click': 'modal.signInDialog()' }
+              {{ episode.name }}
+            .time
+              {{ duration.inFormat(episode.duration) }}
+            .date
+              {{ episode.released_at }}
+
+        .media-item
+          %a.media-item-show{ 'ng-if': 'auth.isAuthenticated() || !podcast.private', 'ng-href': '{{episode.path}}', 'ng-attr-rel': "{{ episode.video ? 'nofollow' : undefined }}" }
+            .icon-info
+          %a.media-item-show{ 'ng-if': 'podcast.private && !auth.isAuthenticated() ',  'ng-click': 'modal.signInDialog()' }
+            .icon-info  
+
+    %scroll-bottom-sensor{ 'ng-if': 'episodesNextPage', 'on-reach-bottom': 'loadMoreEpisodes( episodesNextPage, searchQuery.text )' }

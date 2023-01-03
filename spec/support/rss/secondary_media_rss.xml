@@ -1,0 +1,72 @@
+<rss xmlns:itunes="http://www.itunes.com/DTDs/Podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>My MoneyLife</title>
+    <link>http://www.crown.org/media</link>
+    <description>
+      Host, Chuck Bentley, goes in-depth on financial issues affecting you, providing help, hope and insight - all from a biblical perspective.
+    </description>
+    <language>en-us</language>
+    <copyright>(c) 2015 Crown Financial Ministries</copyright>
+    <managingEditor>hstanfield@crown.org (Heather Stanfield)</managingEditor>
+    <webMaster>hstanfield@crown.org (Heather Stanfield)</webMaster>
+    <generator>mirabyte Feed Writer</generator>
+    <lastBuildDate>Sat, 25 Jul 2015 11:00:00 -0500</lastBuildDate>
+    <image>
+      <url>
+        http://www.crown.org/radio/podcast/programs/images/mml_itunes.jpg
+      </url>
+      <title>My MoneyLife</title>
+      <link>http://www.crown.org/media</link>
+      <width>144</width>
+      <height>144</height>
+      <description>My MoneyLife Logo</description>
+    </image>
+    <category>Religion & Spirituality</category>
+    <category>Christianity</category>
+    <category>News & Politics</category>
+    <category>Business</category>
+    <itunes:author>Crown Financial Ministries</itunes:author>
+    <itunes:keywords>
+      Money Life,My Money Life,MoneyLife,My MoneyLife,Crown,Larry Burkett,Crown Financial Ministries,Crown Ministries,Christian,stewardship,money,financial,budget,tithing,Chuck Bentley
+    </itunes:keywords>
+    <itunes:subtitle>
+      Providing help, hope and insight - all from a biblical perspective.
+    </itunes:subtitle>
+    <itunes:summary>
+      Host, Chuck Bentley, goes in-depth on financial issues affecting you, providing help, hope and insight - all from a biblical perspective.
+    </itunes:summary>
+    <itunes:category text="Religion & Spirituality"/>
+    <item>
+      <title>My MoneyLife for Friday, Mar 11, 2016</title>
+      <description>LB_Riches Are Fleeting</description>
+      <link>http://www.crown.org/radiodl</link>
+      <author>web@crown.org (Crown Financial Ministries)</author>
+      <pubDate>Thu, 3 Mar 2016 17:43:11 -0500</pubDate>
+      <enclosure url="http://www.crown.org/media_dl/cfm_mml_20160311.mp3" length="1956000" type="audio/mpeg"/>
+      <category>Religion and Spirituality=</category>
+      <itunes:author>Crown Financial Ministries</itunes:author>
+      <itunes:duration>2:00</itunes:duration>
+      <itunes:keywords>
+        Christian,stewardship,money,financial,budget,Chuck Bentley
+      </itunes:keywords>
+      <itunes:subtitle>LB_Riches Are Fleeting</itunes:subtitle>
+      <itunes:summary>LB_Riches Are Fleeting</itunes:summary>
+    </item>
+    <item>
+      <title>My MoneyLife for Thursday, Mar 10, 2016</title>
+      <description>Should Children Work for an Allowance?</description>
+      <link>http://www.crown.org/radiodl</link>
+      <author>web@crown.org (Crown Financial Ministries)</author>
+      <pubDate>Thu, 3 Mar 2016 17:42:24 -0500</pubDate>
+      <enclosure url="http://www.crown.org/media_dl/cfm_mml_20160310.mp3" length="1956000" type="audio/mpeg"/>
+      <category>Religion and Spirituality=</category>
+      <itunes:author>Crown Financial Ministries</itunes:author>
+      <itunes:duration>2:00</itunes:duration>
+      <itunes:keywords>
+        Christian,stewardship,money,financial,budget,Chuck Bentley
+      </itunes:keywords>
+      <itunes:subtitle>Should Children Work for an Allowance?</itunes:subtitle>
+      <itunes:summary>Should Children Work for an Allowance?</itunes:summary>
+    </item>
+  </channel>
+</rss>

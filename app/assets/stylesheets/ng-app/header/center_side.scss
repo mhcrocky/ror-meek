@@ -1,0 +1,40 @@
+#main-header {
+  .center-side {
+    display: table-cell;
+    width: inherit;
+    vertical-align: top;
+
+    .logo { display: none; }
+
+    .header-logo {
+      background: image_url('logos/logo_2021') no-repeat;
+      background-position: center;
+      background-size: contain;
+      display: flex;
+      height: 48px;
+      margin: 0 auto;
+      vertical-align: middle;
+      width: 85px;
+    }
+  }
+}
+
+@include mobile-landscape {
+  #main-header {
+    .center-side {
+      .logo {
+        width: initial;
+        height: 100%;
+        text-align: center;
+        text-decoration: none;
+        background-color: #fff;
+        display: inline-block;
+
+        img {
+          width: 85px;
+          vertical-align: sub;
+        }
+      }
+    }
+  }
+}

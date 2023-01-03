@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title Meek
+    %base{ href: '/' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' }
+    %meta{ name: 'fragment', content: '!' }
+    %meta{ property: 'fb:app_id', content: ENV.fetch('FACEBOOK_KEY') }
+
+    = render 'layouts/favicons'
+
+    = stylesheet_link_tag('for_tests', media: 'all') if Rails.env.test?
+    :css
+      #{Stylesheet.last.body if Stylesheet.last.present?}
+
+  %body{ 'ng-app': 'Meek', 'data-env': Rails.env }
+    :javascript
+      window.__ENV__ = document.body.getAttribute('data-env')
+    = yield
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application', async: Rails.env.production? || Rails.env.staging?

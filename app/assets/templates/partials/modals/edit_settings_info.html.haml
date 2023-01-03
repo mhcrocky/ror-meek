@@ -1,0 +1,40 @@
+%script{ type: 'text/ng-template', id: 'editSettingsInfo' }
+  .modal.account-settings
+    .modal-wrapper
+      .btn-hide.icon-arrow-back{{ 'ng-click': 'modal.closeAll()' }}
+      %h3 Account Settings
+
+      %form.site-form{ action: '/api/user/account.json', method: :put, enctype: 'multipart/form-data', 'ng-submit' => 'editAccount.accountUpdate($event)' }
+
+        .input-parent
+          %label.icon-play-auto{ for: 'user-is-auto-play' } Auto Play Default Radio Station:
+          %select#user-is-auto-play.field{ name: 'user[is_auto_play]' }
+            %option{ value: 0, 'ng-selected' => 'auth.currentUser.is_auto_play == 0' } No
+            %option{ value: 1, 'ng-selected' => 'auth.currentUser.is_auto_play == 1' } Yes
+
+        .input-parent
+          %label.icon-link{ for: 'user-username' } Profile URL:
+          %input#user-username.field(ng-value='auth.currentUser.username'){ type: 'text', name: 'user[username]' }
+
+        .input-parent.avatar-image
+          %label.icon-user{ for: 'user-profile-pic' } Profile Picture:
+          %div
+            %img(ng-src='{{auth.currentUser.profile_pic}}')
+          %br
+          %input#user-profile-pic{ type: 'file', name: 'user[profile_pic]' }
+          %br
+
+        .input-parent.background-image
+          %label.icon-camera{ for: 'user-background-pic' } Background Image:
+          %div{{ 'ng-if': 'auth.currentUser.background_pic' }}
+            %img{ 'ng-src': '{{ auth.currentUser.background_pic }}' }
+          %br
+          %input#user-background-pic{ type: 'file', name: 'user[background_pic]' }
+          %br
+
+        .input-parent
+          %label.icon-brush{ for: 'user-background' } Background Color:
+          %input#user-background-color.field.background-color(ng-model='auth.currentUser.background_color'){ type: 'color', name: 'user[background_color]' }
+
+        %button.btn-submit{ type: 'submit' } Save
+        .btn-cancel{{ 'ng-click': 'modal.closeAll()' }} Cancel

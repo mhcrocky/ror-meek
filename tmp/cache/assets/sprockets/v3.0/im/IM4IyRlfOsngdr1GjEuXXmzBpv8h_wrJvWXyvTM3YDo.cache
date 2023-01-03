@@ -1,0 +1,13 @@
+I"ç(function() {
+  angular.module("Meek").factory("Background", function($resource) {
+    return $resource("/api/backgrounds/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

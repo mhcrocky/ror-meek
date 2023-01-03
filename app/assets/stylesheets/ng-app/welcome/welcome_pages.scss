@@ -1,0 +1,12 @@
+.welcome {
+  .container-fluid { padding: 0; }
+
+  .modal-sign {
+    .modal-wrapper { width: 100%; }
+  }
+
+  #main-header { display: none; }
+  #side-advertisements { display: none; }
+  #footer { display: none; }
+  #side-navigation-wrapper { display: none; }
+}

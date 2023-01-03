@@ -1,0 +1,37 @@
+I"L(function() {
+  angular.module("Meek").service('SearcherService', function($state) {
+    var Searcher;
+    Searcher = (function() {
+      function Searcher() {
+        $('body').click(function(event) {
+          if ($('.header-search-link').hasClass('open') && !$(event.target).parents('.header-search').length && !$(event.target).hasClass('header-search')) {
+            return $('.header-search-link').removeClass('open');
+          }
+        });
+        $('.header-search-link').on('click', function(event) {
+          $(event.currentTarget).toggleClass('open');
+          return false;
+        });
+      }
+
+      Searcher.prototype.submit = function(event) {
+        var searchBox, searchValue;
+        event.preventDefault();
+        searchBox = $(event.target).find('input');
+        searchValue = searchBox.val();
+        searchBox.val('');
+        searchBox.blur();
+        $('.header-search-link').removeClass('open');
+        return $state.go('search', {
+          search: searchValue
+        });
+      };
+
+      return Searcher;
+
+    })();
+    return new Searcher();
+  });
+
+}).call(this);
+:ET

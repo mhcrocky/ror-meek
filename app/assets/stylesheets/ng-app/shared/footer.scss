@@ -1,0 +1,58 @@
+#footer {
+  margin-left: $sidebar-width;
+  background-color: #fff;
+
+  ul > li {
+    display: inline-block;
+    font-family: $helvetica-neue, $open-bold;
+  }
+
+  ul.bolder-links > li {
+    margin-right: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    vertical-align: bottom;
+
+    a { color: $dark_background; }
+  }
+
+  ul.lighter-links {
+    margin-top: 5px;
+    display: inline-block;
+
+    > li {
+      float: left;
+      font-size: 14px;
+      font-weight: 200;
+      vertical-align: top;
+
+      > span {
+        padding: 0 12px;
+        border-left: 1px solid $header_grey;
+        color: $header_grey;
+
+        &:last-child { border-right: 1px solid $header_grey; }
+      }
+
+      a {
+        padding: 0 12px;
+        border-left: 1px solid $header_grey;
+        color: $header_grey;
+      }
+    }
+  }
+
+  .logo {
+    display: block;
+
+    img{
+      display: block;
+      width: 85px;
+    }
+  }
+}
+
+@include tablet-portrait {
+  #footer { margin-left: 0; }
+}

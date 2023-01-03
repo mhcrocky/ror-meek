@@ -1,0 +1,89 @@
+I"«(function() {
+  angular.module("Meek").controller("ProfileController", function($rootScope, $scope, $state, $sce, $stateParams, RecentStationPlays, RecentEpisodePlays, FavoritePodcasts, FavoriteEpisodes, ApplicationService, DurationService, Auth, Layout) {
+    $rootScope.head.setTitle('Account');
+    return Auth.currentUser().then(function(user) {
+      if (user.slug === $stateParams.id) {
+        $scope.background = "background-color: " + user.background_color;
+        if (user.background_pic != null) {
+          $scope.background = "background-image: url(" + user.background_pic + ");";
+        }
+        $scope.favoriteActive = null;
+        $scope.recentActive = null;
+        $scope.favoritePodcasts = FavoritePodcasts.query();
+        $scope.favoriteEpisodes = FavoriteEpisodes.query(function() {
+          return $scope.favoriteActive = 'episode';
+        });
+        $scope.recentEpisodes = RecentEpisodePlays.query(function() {
+          return $scope.recentActive = 'episode';
+        });
+        $scope.favoriteActiveUpdate = (function(_this) {
+          return function(type) {
+            if (type === $scope.favoriteActive) {
+              return;
+            }
+            return $scope.favoriteActive = type;
+          };
+        })(this);
+        $scope.recentActiveUpdate = (function(_this) {
+          return function(type) {
+            if (type === $scope.recentActive) {
+              return;
+            }
+            return $scope.recentActive = type;
+          };
+        })(this);
+        $scope.playFavoriteMedia = function(data) {
+          if ($scope.favoriteActive === 'episode') {
+            $rootScope.player.startPodcast(data.podcast, data);
+          }
+          if ($scope.favoriteActive === 'podcast') {
+            return $rootScope.player.startPodcast(data, data.current_episode);
+          }
+        };
+        $scope.playRecentMedia = function(data) {
+          if ($scope.recentActive === 'episode') {
+            return $rootScope.player.startPodcast(data.podcast, data.episode, data.stopped_at);
+          }
+        };
+        return $scope.slickConfig = {
+          enabled: true,
+          infinite: false,
+          dots: false,
+          slidesToScroll: 1,
+          slidesToShow: 5,
+          responsive: [
+            {
+              breakpoint: 1500,
+              settings: {
+                slidesToShow: 4
+              }
+            }, {
+              breakpoint: 1200,
+              settings: {
+                slidesToShow: 3
+              }
+            }, {
+              breakpoint: 667,
+              settings: {
+                slidesToShow: 2,
+                arrows: false
+              }
+            }, {
+              breakpoint: 400,
+              settings: {
+                slidesToShow: 1,
+                arrows: false
+              }
+            }
+          ]
+        };
+      } else {
+        return $state.go('home');
+      }
+    }, function() {
+      return $state.go('home');
+    });
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,18 @@
+I"Y(function() {
+  angular.module("Meek").service('AlertService', function(toaster) {
+    var Alert;
+    Alert = (function() {
+      function Alert() {}
+
+      Alert.prototype.display = function(message, type) {
+        return toaster.pop(type, null, message);
+      };
+
+      return Alert;
+
+    })();
+    return new Alert();
+  });
+
+}).call(this);
+:ET

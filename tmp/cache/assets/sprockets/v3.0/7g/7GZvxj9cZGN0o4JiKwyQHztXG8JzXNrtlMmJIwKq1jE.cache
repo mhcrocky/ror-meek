@@ -1,0 +1,56 @@
+I"‰(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('InvitableService', function($location, AlertService, FormService, ModalService) {
+    var Inviter;
+    Inviter = (function() {
+      function Inviter() {
+        this.accept = bind(this.accept, this);
+        this.submit = bind(this.submit, this);
+      }
+
+      Inviter.prototype.submit = function(event) {
+        var $form, result;
+        event.preventDefault();
+        $form = $(event.target);
+        FormService.clearErrors($form);
+        result = FormService.submit($form);
+        result.success((function(_this) {
+          return function() {
+            ModalService.closeAll();
+            return AlertService.display('Your invite has been sent. Thank You.', 'success');
+          };
+        })(this));
+        return result.error((function(_this) {
+          return function(data) {
+            return FormService.displayErrors($form, data);
+          };
+        })(this));
+      };
+
+      Inviter.prototype.accept = function(event) {
+        var $form, result;
+        event.preventDefault();
+        $form = $(event.target);
+        FormService.clearErrors($form);
+        result = FormService.submit($form);
+        result.success((function(_this) {
+          return function() {
+            return window.location = '/';
+          };
+        })(this));
+        return result.error((function(_this) {
+          return function(data) {
+            return FormService.displayErrors($form, data);
+          };
+        })(this));
+      };
+
+      return Inviter;
+
+    })();
+    return new Inviter();
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,28 @@
+%script{ type: 'text/ng-template', id: 'signUpDialog' }
+  .modal.modal-sign
+    .modal-wrapper
+      .logo
+        %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}") }
+      %form.site-form{ action: '#', method: 'GET', 'ng-submit': 'auth.submitUserRegistration($event)' }
+        %hr.separator
+        .title.text-support.uppercase Create New Account
+        %a.btn-facebook{ href: '/api/users/auth/facebook', target: '_self' }
+          facebook
+        %a.btn-twitter{ href: '/api/users/auth/twitter', target: '_self' }
+          twitter
+        %hr.separator
+        .title.text-support or
+
+        .input-parent
+          %input.field{ type: 'text', name: 'email', placeholder: 'Email' }
+        .input-parent
+          %input.field{ type: 'password', name: 'password', placeholder: 'Password' }
+        .input-parent
+          %input.field{ type: 'password', name: 'password_confirmation', placeholder: 'Password Confirmation' }
+
+        %button.btn-submit{ type: 'submit' } Sign up
+        .info.text-support
+          By creating an account, you are agreeing to
+          %a{ href: '/terms', target: '_blank' } Meek Terms of Service
+          .link{ 'ng-click': 'modal.signInDialog()' } Already have an account?
+    .background-wrapper

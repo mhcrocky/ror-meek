@@ -1,0 +1,79 @@
+FROM ruby:3.1.2-slim
+
+LABEL "co.anadea.newgit.project"="meek-legacy"
+
+RUN apt-get update -qq && apt-get install -y \
+    build-essential \
+    ca-certificates \
+    cmake \
+    curl \
+    gcc \
+    git \
+    gnupg \
+    imagemagick libmagickwand-dev \
+    libicu-dev \
+    libpq-dev \
+    lsb-release \
+    make \
+    pkg-config \
+    unzip \
+    wget \
+    sqlite3 libsqlite3-dev \
+    libqt5webkit5-dev \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-tools \
+    gstreamer1.0-x \
+    libxslt-dev \
+    libxml2-dev \
+    ffmpeg \
+    fontforge \
+    woff2 woff-tools \
+    eot-utils
+
+ENV CHROMEDRIVER_VERSION 94.0.4606.41
+# INSTALL CHROME
+RUN wget --no-check-certificate -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
+    && apt-get update -yqqq && apt-get install -y google-chrome-stable > /dev/null 2>&1 \
+    && sed -i 's/"$@"/--no-sandbox "$@"/g' /opt/google/chrome/google-chrome
+# INSTALL CHROMEDRIVER
+RUN wget --no-check-certificate -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip \
+    && unzip /tmp/chromedriver.zip chromedriver -d /usr/bin/ \
+    && rm /tmp/chromedriver.zip \
+    && chmod ugo+rx /usr/bin/chromedriver
+
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN apt-get update && apt-get upgrade -y && apt-get install -y postgresql-client && apt-get clean all
+
+#ARG NODE_VERSION=14.17.3
+ARG NODE_VERSION=19.3.0
+ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
+ARG NODE_HOME=/opt/$NODE_PACKAGE
+
+ENV NODE_PATH $NODE_HOME/lib/node_modules
+ENV PATH $NODE_HOME/bin:$PATH
+
+RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC /opt/
+
+RUN npm install
+
+#RUN gem install bundler -v 1.17.3
+#BB Added for new Ruby version
+#RUN gem install bundler -v 2.0.0.pre.3
+RUN gem install fontcustom -v 2.0.0
+
+WORKDIR /app
+COPY Gemfile Gemfile.lock ./
+COPY package.json ./
+ENV PATH /usr/local/node_modules/.bin:$PATH
+
+RUN bundle install --jobs 5 \
+  && npm install --modules-folder=/usr/local/node_modules \
+  && bundle clean --force \
+  && gem cleanup
+ #BB Added to support new Ruby
+#RUN bundle _2.0.0.pre.3_ install --jobs 5 \
+#  && npm install --modules-folder=/usr/local/node_modules \
+#  && bundle clean --force \
+#  && gem cleanup

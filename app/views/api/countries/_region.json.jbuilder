@@ -1,0 +1,1 @@
+json.(region, :id, :code, :name)

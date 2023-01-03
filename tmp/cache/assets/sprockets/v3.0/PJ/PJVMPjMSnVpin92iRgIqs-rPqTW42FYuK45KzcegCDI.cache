@@ -1,0 +1,30 @@
+I"¯(function() {
+  angular.module("Meek").service('AccountService', function(AuthenticationService, FormService, AlertService, ModalService) {
+    var Account;
+    Account = (function() {
+      function Account() {}
+
+      Account.prototype.accountUpdate = function(event) {
+        var $form, $result;
+        event.preventDefault();
+        $form = $(event.target);
+        FormService.clearErrors($form);
+        $result = FormService.submit($form);
+        $result.success(function(data, status, headers, config) {
+          ModalService.closeAll();
+          AuthenticationService.reloadCurrentUser();
+          return AlertService.display('Your account information has been updated.', 'success');
+        });
+        return $result.error(function(data, status, headers, config) {
+          return FormService.displayErrors($form, data);
+        });
+      };
+
+      return Account;
+
+    })();
+    return new Account();
+  });
+
+}).call(this);
+:ET

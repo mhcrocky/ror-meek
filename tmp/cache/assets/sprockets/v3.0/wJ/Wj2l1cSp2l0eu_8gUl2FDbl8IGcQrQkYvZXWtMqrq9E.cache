@@ -1,0 +1,13 @@
+I"á(function() {
+  angular.module("Meek").factory("Podcast", function($resource) {
+    return $resource("/api/podcasts/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

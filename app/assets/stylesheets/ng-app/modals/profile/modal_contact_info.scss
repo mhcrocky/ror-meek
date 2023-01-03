@@ -1,0 +1,25 @@
+.contact-info {
+  .modal-wrapper {
+    .site-form {
+      .facebook {
+        label {
+          padding-left: 0;
+
+          &:before { color: #4f5b98; }
+        }
+      }
+
+      .twitter {
+        label {
+          &:before { color: #50afc3; }
+        }
+      }
+
+      .linkedin {
+        label {
+          &:before { color: #497c9c; }
+        }
+      }
+    }
+  }
+}

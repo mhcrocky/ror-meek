@@ -1,0 +1,69 @@
+// Meek Normalizer:
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.btn {
+  line-height: 32px;
+  padding: 0px 30px;
+  outline: none;
+
+  &:focus {
+    outline: none !important;
+  }
+}
+
+%button {
+  padding: 0px 30px;
+}
+
+label {
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+img { vertical-align: top; }
+
+input, textarea, keygen, select, button {
+  font-size: 14px;
+}
+
+#react-container {
+  padding-top: 0;
+  margin-top: -5px;
+}
+
+.top-episodes {
+  .swiper-container {
+    .swiper-slide {
+      width: 40% !important;
+      margin-bottom: 50px !important;
+    }
+  }
+}
+
+.recent-episodes {
+  .swiper-container {
+    .swiper-slide {
+      width: 40% !important;
+      margin-bottom: 50px !important;
+    }
+  }
+}

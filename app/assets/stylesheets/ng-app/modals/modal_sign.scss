@@ -1,0 +1,16 @@
+.modal-sign {
+  max-width: 800px;
+  max-height: 640px;
+
+  .modal-wrapper {
+    .logo { width: 110px; }
+  }
+
+  .background-wrapper { background-image: asset-url('bg_sign.png'); }
+}
+
+@include mobile-landscape {
+  .modal-sign {
+    @include mobile-modal;
+  }
+}

@@ -1,0 +1,26 @@
+.static-page.favorite
+  .header-page
+    .list-breadcrumbs.left-right-offset
+      .list-breadcrumbs-item
+        %a.uppercase{ 'ui-sref': 'home' } Home
+      .list-breadcrumbs-item
+        .last-flex-item-container
+          All
+    .categories.uppercase
+      65 Favorites
+    %h1.title
+      Favorites
+    .info
+      Podcast Favorites, Episode Favorites, Article Favorites
+
+    %div{ 'ng-include': "'partials/switcher.html'" }
+
+  %ul.list-menu-static-page{ 'ng-include': "'partials/favorites_menu.html'" }
+  %h1.title.left-right-offset
+    All Favorites
+
+  .left-right-offset
+    %ul.list-box{ 'ng-class': 'listItemView.currentView()' }
+      %li.list-box-item{ 'ng-repeat': 'media in articles', 'ng-include': "'partials/media/article_item.html'" }
+      %li.list-box-item{ 'ng-repeat': 'media in podcasts', 'ng-include': "'partials/media/podcast_item.html'" }
+      %li.list-box-item{ 'ng-repeat': 'media in episodes', 'ng-include': "'partials/media/episode_item.html'" }

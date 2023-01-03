@@ -1,0 +1,78 @@
+#welcome-body-main
+  .modal.modal-sign
+    .modal-wrapper
+      .tab-wrapper
+
+
+
+        / SIGN IN tab
+        .tab-content{ 'ng-class': "{'active': selectedTab === 'signin' }" }
+          .logo
+            %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}") }
+          %form.site-form{ action: '#', method: 'GET', 'ng-submit': 'auth.submitLogin($event)' }
+            %hr.separator
+            .title.text-support.uppercase Sign In With
+            %a.btn-facebook{ href: '/api/users/auth/facebook', target: '_self' }
+              facebook
+            %a.btn-twitter{ href: '/api/users/auth/twitter', target: '_self' }
+              twitter
+            %hr.separator
+            .title.text-support or
+
+            .input-parent
+              %input.field{ type: 'hidden', name: 'base' }
+            .input-parent
+              %input.field{ type: 'text', name: 'email', placeholder: 'Email' }
+            .input-parent
+              %input.field{ type: 'password', name: 'password', placeholder: 'Password' }
+
+            %button.btn-submit{ type: 'submit' } Log in
+            .info.text-support
+              .link{ 'ng-click': "selectedTab = 'forgotPassword'" } Forgot Your Password?
+              .link{ 'ng-click': "selectedTab = 'resendConfirmation'" } Resend Confirmation Email
+            %a.btn-signup{ 'ui-sref': 'setupAccount', 'ng-click': 'modal.closeAll()'  }
+              Setup A Free Account?
+
+
+        / RESET PASSWORD tab
+        .tab-content{ 'ng-class': "{'active': selectedTab === 'forgotPassword' }" }
+          .logo
+            %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}") }
+          %form.site-form{ action: '/api/users/password.json', method: 'POST', 'ng-submit': 'auth.submitPasswordReset($event)' }
+            %hr.separator
+            .title.text-support.uppercase Reset Your Password
+            .text-support
+              Can’t remember your password to login? No problem. Just enter your email address and we will send you instructions.
+            %br
+
+            .input-parent
+              %input{ type: 'hidden', name: 'base' }
+
+            .input-parent
+              %input.field{ type: 'text', name: 'user[email]', placeholder: 'Email' }
+
+            %button.btn-submit{ type: 'submit' } Reset now
+            .info.text-support
+              .link{ 'ng-click': "selectedTab = 'signin'" } Go to Sign in
+
+
+        / RESEND CONFIRMATION tab
+        .tab-content{ 'ng-class': "{'active': selectedTab === 'resendConfirmation' }" }
+          .logo
+            %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}") }
+          %form.site-form{ action: '/api/users/confirmation.json', method: 'POST', 'ng-submit': 'auth.submitEmailReconfirm($event)' }
+            %hr.separator
+            .title.text-support.uppercase Resend Confirmation Email
+            .text-support
+              If you want to resent confirmation email...
+            %br
+
+            .input-parent
+              %input{ type: 'hidden', name: 'base' }
+
+            .input-parent
+              %input.field{ type: 'text', name: 'user[email]', placeholder: 'Email' }
+
+            %button.btn-submit{ type: 'submit' } Send email
+            .info.text-support
+              .link{ 'ng-click': "selectedTab = 'signin'" } Go to Sign in

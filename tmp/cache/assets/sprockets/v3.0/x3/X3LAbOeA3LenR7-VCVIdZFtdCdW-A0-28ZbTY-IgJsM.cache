@@ -1,0 +1,74 @@
+I"‹	(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('SideNavigationService', function($rootScope, $state, Layout, HideOnClickAnywhereService) {
+    var SideNavigation;
+    SideNavigation = (function() {
+      function SideNavigation() {
+        this.toggleSection = bind(this.toggleSection, this);
+        this.closeSideNav = bind(this.closeSideNav, this);
+        this.toggleSideBar = bind(this.toggleSideBar, this);
+        $('body').on('click', '#sidenav-button', this.toggleSideBar);
+        $('body').on('click', 'article, footer, #side-navigation-wrapper li a', this.closeSideNav);
+        return this;
+      }
+
+      SideNavigation.prototype.toggleSideBar = function() {
+        var $sideNavgiation;
+        $sideNavgiation = $('#side-navigation-wrapper');
+        if ($sideNavgiation.hasClass('open')) {
+          this.closeSideNav();
+        } else {
+          this.openSideNav();
+        }
+      };
+
+      SideNavigation.prototype.openSideNav = function() {
+        var $sideNavgiation;
+        $sideNavgiation = $('#side-navigation-wrapper');
+        $sideNavgiation.addClass('open');
+      };
+
+      SideNavigation.prototype.closeSideNav = function() {
+        var $sideNavgiation;
+        this.hideAllSections();
+        $sideNavgiation = $('#side-navigation-wrapper');
+        $sideNavgiation.removeClass('open');
+      };
+
+      SideNavigation.prototype.toggleSection = function(event) {
+        var $section;
+        $section = $(event.target).parents('.section');
+        this._toggleSection($section.siblings('.section.active'));
+        this._toggleSection($section);
+      };
+
+      SideNavigation.prototype._toggleSection = function($toggleSection) {
+        $toggleSection.toggleClass('active');
+        if (Layout.isMobile()) {
+          $toggleSection.find('ul').slideToggle();
+        } else {
+          $toggleSection.find('ul').toggle();
+        }
+      };
+
+      SideNavigation.prototype.hideAllSections = function() {
+        var $panelSections, $sections;
+        $sections = $('.section');
+        $panelSections = $sections.find('.new-panel-section');
+        $sections.removeClass('active');
+        if (Layout.isMobile()) {
+          $panelSections.slideUp();
+        } else {
+          $panelSections.hide();
+        }
+      };
+
+      return SideNavigation;
+
+    })();
+    return new SideNavigation();
+  });
+
+}).call(this);
+:ET

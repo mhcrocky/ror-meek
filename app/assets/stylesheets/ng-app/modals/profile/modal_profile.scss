@@ -1,0 +1,104 @@
+.profile-modal {
+  .modal {
+    @include transform-none;
+
+    width: 600px;
+    height: 100vh;
+    margin: 0;
+    top: 0;
+    right: 0;
+    left: inherit;
+
+    h3 {
+      margin-left: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #4d98b7;
+      position: relative;
+      font-size: 24px;
+
+      &:after {
+        width: 115px;
+        height: 4px;
+        background: #4d98b7;
+        position: absolute;
+        left:0;
+        bottom: 0;
+        content: ''
+      }
+    }
+
+    .btn-hide {
+      padding-left: 30px;
+      background: #4d98b7;
+      font-size: 19px;
+      color: #fff;
+      line-height: 60px;
+      cursor: pointer;
+
+      &:hover { background: lighten(#4d98b7, 5%); }
+    }
+
+    .modal-wrapper {
+      width: inherit;
+      float: none;
+      overflow-y: auto;
+
+      .site-form {
+        margin: 0 30px;
+        text-align: left;
+
+        label {
+          margin-top: 10px;
+          font-size: 12px;
+          line-height: 22px;
+
+          &:before {
+            margin-right: 4px;
+            float: left;
+            font-size: 17px;
+          }
+        }
+
+        select { height: 42px; }
+
+        .btn-submit {
+          width: inherit;
+          padding: 0 30px;
+          display: inline-block;
+        }
+
+        .btn-cancel {
+          margin-left: 5px;
+          margin-bottom: 10px;
+          padding: 0 30px;
+          border: 1px solid #d7d7d7;
+          display: inline-block;
+          background: #fff;
+          font-size: 14px;
+          color: #2d2d2d;
+          line-height: 44px;
+          text-align: center;
+          cursor: pointer;
+
+          &:hover { background: #d7d7d7; }
+        }
+      }
+    }
+  }
+}
+
+@include tablet-landscape {
+  .profile-modal {
+    .modal { width: 400px; }
+  }
+}
+
+@include mobile-landscape {
+  .profile-modal {
+    .modal {
+      width: 100%;
+
+      .modal-wrapper { padding-bottom: 50px; }
+    }
+  }
+}

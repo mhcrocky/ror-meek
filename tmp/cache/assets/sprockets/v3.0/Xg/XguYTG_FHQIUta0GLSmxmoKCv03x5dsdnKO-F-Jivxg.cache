@@ -1,0 +1,16 @@
+I"ƒ(function() {
+  angular.module('Meek').directive('meekVideoPlayerWrapper', function() {
+    return {
+      restrict: 'E',
+      template: '<div id="meek-video-container"></div>',
+      replace: true,
+      link: function(scope, elem, attrs, model) {
+        return elem.ready(function() {
+          scope.videoPlayer.init(scope.episode);
+        });
+      }
+    };
+  });
+
+}).call(this);
+:ET

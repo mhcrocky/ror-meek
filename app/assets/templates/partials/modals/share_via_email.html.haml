@@ -1,0 +1,33 @@
+%script{ type: 'text/ng-template', id: 'shareViaEmail' }
+  .modal.modal-invite
+    .icon.icon-plus-bold.modal-close{ 'ng-click': 'modal.closeAll()' }
+    .modal-wrapper
+      %a.logo{ 'ui-sref': 'home' }
+        %img{ src: image_path('logos/logo_email.png'), style: 'border-style: none' }
+
+      %form.site-form{ action: '/api/notification.json', method: :post, 'ng-submit': 'notifyFriend.submit($event)' }
+        %hr.separator
+        .title.text-support.uppercase  Share to Your Friend via Email
+
+        .input-parent
+          %input{ type: 'hidden', name: 'base' }
+
+        .input-parent
+          %input.field{ type: 'email', name: 'notify[recipient_email]', placeholder: "Friend’s Email Address" }
+
+        .input-parent
+          %input.field{ type: 'hidden', name: 'notify[media_name]', 'ng-value': 'media_name' }
+
+        .input-parent
+          %input.field{ type: 'hidden', name: 'notify[media_path]', 'ng-value': 'media_path' }
+
+        .input-parent
+          %textarea.field{ readonly: true, placeholder: 'Subject', rows: '1' }
+            Podcast: {{ media_name }}
+
+        .input-parent
+          %textarea.field{ readonly: true, placeholder: 'Message', rows: '4' }
+            Thought you might like this podcast of {{ media_name }}
+
+        %button.btn-submit{ type: 'submit' } Send
+    .background-wrapper

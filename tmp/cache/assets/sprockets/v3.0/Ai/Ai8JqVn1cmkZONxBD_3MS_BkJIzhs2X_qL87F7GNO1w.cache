@@ -1,0 +1,13 @@
+I"ë(function() {
+  angular.module('Meek').factory('Unsubscribe', function($resource) {
+    return $resource('/api/unsubscribe', {
+      format: 'json'
+    }, {
+      'update': {
+        method: 'PUT'
+      }
+    });
+  });
+
+}).call(this);
+:ET

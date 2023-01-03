@@ -1,0 +1,13 @@
+I"Ý(function() {
+  angular.module("Meek").factory("Play", function($resource) {
+    return $resource("/api/play", {
+      format: 'json'
+    }, {
+      'update': {
+        method: 'PUT'
+      }
+    });
+  });
+
+}).call(this);
+:ET

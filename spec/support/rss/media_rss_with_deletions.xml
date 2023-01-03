@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <channel>
+    <atom:link href="http://amosjohnsonjr.libsyn.com/rss" rel="self" type="application/rss+xml"/>
+    <title>Church for Entrepreneurs</title>
+    <pubDate>Mon, 22 Feb 2016 05:01:00 +0000</pubDate>
+    <lastBuildDate>Thu, 25 Feb 2016 11:02:55 +0000</lastBuildDate>
+    <generator>Libsyn WebEngine 2.0</generator>
+    <link>http://churchforentrepreneurs.com/</link>
+    <language>en</language>
+    <copyright><![CDATA[ Church for Entrepreneurs]]></copyright>
+    <docs>http://churchforentrepreneurs.com/</docs>
+    <itunes:summary><![CDATA[This is your spiritual dojo for Word Training, so you can fight the good fight of Faith to conquer the mountain of your God given entrepreneurial calling.]]></itunes:summary>
+    <image>
+      <url>http://static.libsyn.com/p/assets/0/7/d/c/07dc721f4391dbcc/CE_Logo_Icon.jpg</url>
+      <title>Church for Entrepreneurs</title>
+      <link><![CDATA[http://churchforentrepreneurs.com/]]></link>
+    </image>
+    <itunes:author>Amos Johnson Jr, PhD</itunes:author>
+    <itunes:keywords>bible,business,christian,entrepreneurship</itunes:keywords>
+    <itunes:category text="Religion &amp; Spirituality">
+      <itunes:category text="Christianity"/>
+    </itunes:category>
+    <itunes:category text="Business"/>
+    <itunes:category text="Education">
+      <itunes:category text="Training"/>
+    </itunes:category>
+    <itunes:image href="http://static.libsyn.com/p/assets/0/7/d/c/07dc721f4391dbcc/CE_Logo_Icon.jpg" />
+    <itunes:explicit>clean</itunes:explicit>
+    <itunes:owner>
+      <itunes:name><![CDATA[Amos Johnson Jr, PhD]]></itunes:name>
+      <itunes:email>aj@amosjohnsonjr.com</itunes:email>
+    </itunes:owner>
+    <description><![CDATA[This is your spiritual dojo for Word Training, so you can fight the good fight of Faith to conquer the mountain of your God given entrepreneurial calling.]]></description>
+    <itunes:subtitle><![CDATA[Christian Entrepreneurship]]></itunes:subtitle>
+
+    <item>
+      <title>“God is going to work it out” is not a strategy for success [Archive]</title>
+      <pubDate>Mon, 15 Feb 2016 05:01:00 +0000</pubDate>
+      <guid isPermaLink="false"><![CDATA[02d68b17c6bd85a5d680bbb61c080fd1]]></guid>
+      <link><![CDATA[http://amosjohnsonjr.libsyn.com/god-is-going-to-work-it-out-is-not-a-strategy-for-success-archive]]></link>
+      <itunes:image href="http://static.libsyn.com/p/assets/0/7/d/c/07dc721f4391dbcc/CE_Logo_Icon.jpg" />
+      <description><![CDATA[<p>We on a brief break, so I don't have a brand new podcast for you this morning.</p>
+      <p>However, I went through the archive and pull out one that will give you some insight on the balance between Faith and Planning.</p>
+      <p>This podcast is titled: "God is going to work it out” is not a strategy for success.</p>]]></description>
+      <enclosure length="9932697" type="audio/mpeg" url="http://traffic.libsyn.com/amosjohnsonjr/02152016.mp3" />
+      <itunes:duration>07:47</itunes:duration>
+      <itunes:explicit>no</itunes:explicit>
+      <itunes:keywords />
+      <itunes:subtitle><![CDATA[We on a brief break, so I don't have a brand new podcast for you this morning.
+        However, I went through the archive and pull out one that will give you some insight on the balance between Faith and Planning.
+        This podcast is titled: "God is going to...]]></itunes:subtitle>
+      </item>
+      <item>
+        <title>Don't ask why, just keep pressing until victory</title>
+        <pubDate>Mon, 08 Feb 2016 06:13:24 +0000</pubDate>
+        <guid isPermaLink="false"><![CDATA[d24467b519c77e714986184e1a71e00e]]></guid>
+        <link><![CDATA[http://amosjohnsonjr.libsyn.com/dont-ask-why-just-keep-pressing-until-victory]]></link>
+        <itunes:image href="http://static.libsyn.com/p/assets/0/7/d/c/07dc721f4391dbcc/CE_Logo_Icon.jpg" />
+        <description><![CDATA[<p>Have you ever heard the saying "the Lord gives and takes away". Well, it's in the Bible, but this is not true. We use this saying to make ourselves feel better when things don't work out the way we desire.</p>
+        <p><span>Instead, when you know it is God's will for a thing to happen, then don't except the disappoint and <span>don't ask why it didn't happened. Just ask God to fix it and keep pressing until you have victory in that area.</span></span></p>
+        <p>Learn more about this concept in today's podcast.</p>
+        <p>.</p>]]></description>
+        <enclosure length="12684109" type="audio/mpeg" url="http://traffic.libsyn.com/amosjohnsonjr/02082016.mp3" />
+        <itunes:duration>09:51</itunes:duration>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:keywords />
+        <itunes:subtitle><![CDATA[Have you ever heard the saying "the Lord gives and takes away". Well, it's in the Bible, but this is not true. We use this saying to make ourselves feel better when things don't work out the way we desire.
+          Instead, when you know it is God's will for...]]></itunes:subtitle>
+        </item>
+      </channel>
+    </rss>

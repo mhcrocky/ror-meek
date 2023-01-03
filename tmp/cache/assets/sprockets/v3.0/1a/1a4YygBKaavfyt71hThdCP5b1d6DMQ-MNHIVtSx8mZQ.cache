@@ -1,0 +1,9 @@
+I"Ï(function() {
+  angular.module('Meek').factory('RecentEpisodePlays', function($resource, Podcast) {
+    return $resource('/api/user/recent/episodes/:id', {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

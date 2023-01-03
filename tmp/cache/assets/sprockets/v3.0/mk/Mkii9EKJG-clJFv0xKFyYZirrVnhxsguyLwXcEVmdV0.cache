@@ -1,0 +1,30 @@
+I"+(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module('Meek').service('ViewItemsService', function($localStorage) {
+    var ViewItems;
+    ViewItems = (function() {
+      function ViewItems() {
+        this.currentView = bind(this.currentView, this);
+        this.setView = bind(this.setView, this);
+        this._currentView = $localStorage.itemView || 'list-view';
+        return this;
+      }
+
+      ViewItems.prototype.setView = function(classView) {
+        this._currentView = $localStorage.itemView = classView;
+        return this._currentView;
+      };
+
+      ViewItems.prototype.currentView = function() {
+        return this._currentView;
+      };
+
+      return ViewItems;
+
+    })();
+    return new ViewItems();
+  });
+
+}).call(this);
+:ET

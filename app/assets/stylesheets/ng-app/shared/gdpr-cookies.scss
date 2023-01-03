@@ -1,0 +1,71 @@
+.gdpr-cookies {
+  display: table;
+  position: fixed;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 215px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  min-height: 64px;
+  background-color: $dark_background;
+  color: #fff;
+  opacity: 0;
+  animation: fade_animation 0.5s linear forwards;
+  animation-delay: 5s;
+
+  &__inner {
+    display: table-row;
+  }
+
+  &__item {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  &__link {
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+
+    &:hover, &:active, &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &__button {
+    padding-left: 16px;
+    padding-right: 16px;
+    display: inline-block;
+    border: 0;
+    background: #5eacd4;
+    text-align: center;
+    font-size: 14px;
+    line-height: 32px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover, &:active, &:focus {
+      background-color: #72b6d9;
+    }
+  }
+}
+
+@keyframes fade_animation {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@include tablet-portrait {
+  .gdpr-cookies {
+    padding-left: 35px;
+  }
+}
+
+@include mobile-portrait {
+  .gdpr-cookies {
+    padding-left: 0;
+  }
+}

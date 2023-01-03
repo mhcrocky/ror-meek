@@ -1,0 +1,9 @@
+I"¿(function() {
+  angular.module("Meek").factory("Metadata", function($resource) {
+    return $resource("/api/radio_stations/:id/metadata", {
+      format: 'json'
+    });
+  });
+
+}).call(this);
+:ET

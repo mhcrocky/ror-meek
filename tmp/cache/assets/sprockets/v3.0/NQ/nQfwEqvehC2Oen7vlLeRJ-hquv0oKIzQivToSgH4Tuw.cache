@@ -1,0 +1,11 @@
+I"±(function() {
+  angular.module("Meek").controller("FavoriteAllController", function($rootScope, $scope, FavoritePodcasts, FavoriteEpisodes, FavoriteArticles, ApplicationService) {
+    $rootScope.head.setTitle('Favorite All');
+    $scope.favorite_type = 'all';
+    $scope.podcasts = FavoritePodcasts.query();
+    $scope.episodes = FavoriteEpisodes.query();
+    return $scope.articles = FavoriteArticles.query();
+  });
+
+}).call(this);
+:ET

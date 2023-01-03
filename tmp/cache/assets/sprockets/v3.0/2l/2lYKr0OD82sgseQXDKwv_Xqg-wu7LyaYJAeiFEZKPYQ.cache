@@ -1,0 +1,13 @@
+I"ä(function() {
+  angular.module("Meek").factory("Category", function($resource) {
+    return $resource("/api/categories/:id", {
+      format: 'json'
+    }, {
+      get: {
+        cache: true
+      }
+    });
+  });
+
+}).call(this);
+:ET

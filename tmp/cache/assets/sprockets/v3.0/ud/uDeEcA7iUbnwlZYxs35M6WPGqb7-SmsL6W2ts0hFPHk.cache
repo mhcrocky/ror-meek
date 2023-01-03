@@ -1,0 +1,13 @@
+I"‹(function() {
+  angular.module("Meek").controller("WelcomeController", function($state, $rootScope, $scope, ApplicationService, Auth, AuthenticationService) {
+    Auth.currentUser().then((function(user) {
+      return $state.go('profile', {
+        id: user.slug
+      });
+    }));
+    $rootScope.head.setTitle('Welcome To Meek');
+    return $scope.selectedTab = 'signin';
+  });
+
+}).call(this);
+:ET

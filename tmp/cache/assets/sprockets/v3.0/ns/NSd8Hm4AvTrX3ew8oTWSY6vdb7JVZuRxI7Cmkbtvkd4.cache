@@ -1,0 +1,73 @@
+I"O	(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('ShareService', function($location, ModalService) {
+    var Share;
+    Share = (function() {
+      function Share() {
+        this._sharePinterest = bind(this._sharePinterest, this);
+        this._shareTwitter = bind(this._shareTwitter, this);
+        this._shareFacebook = bind(this._shareFacebook, this);
+        this._shareGoogle = bind(this._shareGoogle, this);
+        this._shareEmail = bind(this._shareEmail, this);
+        this.shareLink = bind(this.shareLink, this);
+      }
+
+      Share.prototype.rootUrls = function() {
+        return $location.$$protocol + '://' + $location.$$host;
+      };
+
+      Share.prototype.shareLink = function(type, opts) {
+        var image, text, url;
+        url = this.rootUrls() + opts.linkPath;
+        image = this.rootUrls() + opts.imagePath;
+        text = opts.title;
+        if (type === 'google') {
+          this._shareGoogle(url);
+        }
+        if (type === 'facebook') {
+          this._shareFacebook(url);
+        }
+        if (type === 'twitter') {
+          this._shareTwitter(url, text);
+        }
+        if (type === 'pinterest') {
+          this._sharePinterest(url, text, image);
+        }
+        if (type === 'email') {
+          this._shareEmail(url, text);
+        }
+      };
+
+      Share.prototype._shareEmail = function(url, text) {
+        return ModalService.shareViaEmail(text, url);
+      };
+
+      Share.prototype._shareGoogle = function(url) {
+        return this._open("https://plus.google.com/share?url=" + url);
+      };
+
+      Share.prototype._shareFacebook = function(url) {
+        return this._open("https://www.facebook.com/sharer/sharer.php?u=" + url);
+      };
+
+      Share.prototype._shareTwitter = function(url, text) {
+        return this._open("https://twitter.com/share?url=" + url + "&text=" + text);
+      };
+
+      Share.prototype._sharePinterest = function(url, text, image) {
+        return this._open("http://pinterest.com/pin/create/button/?url=" + url + "&description=" + text + "&media=" + image);
+      };
+
+      Share.prototype._open = function(url) {
+        window.open(url, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');
+      };
+
+      return Share;
+
+    })();
+    return new Share();
+  });
+
+}).call(this);
+:ET

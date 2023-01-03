@@ -1,0 +1,29 @@
+#acceptInvitation {
+  font-family: "Helvetica Neue", "Open-Sans-Bold";
+  color: #aaa;
+  padding-left: 5%;
+  h1, h3 {
+    color: #2d2d2d;
+  }
+  input {
+    width: 305px;
+    height: 2%;
+    background-color: #faffbd;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+  }
+
+  button {
+    border: none;
+    color: #fff;
+    width: 345px;
+    padding: 5px 5px;
+    height: 4%;
+    background: #5eacd4;
+    &:hover {
+      background-color: #72b6d9;
+    }
+  }
+}

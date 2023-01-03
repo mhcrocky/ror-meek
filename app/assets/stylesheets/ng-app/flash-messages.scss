@@ -1,0 +1,12 @@
+#toast-container {
+  &.toast-top-right { top: 95px; }
+}
+
+@include mobile-landscape {
+  #toast-container {
+    &.toast-top-right {
+      top: 53px;
+      right: 3px;
+    }
+  }
+}

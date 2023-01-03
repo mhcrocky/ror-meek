@@ -1,0 +1,14 @@
+I"º(function() {
+  angular.module('Meek').controller('UnsubscribeController', function($state, $stateParams, Unsubscribe, ApplicationService, AlertService) {
+    return Unsubscribe.update({
+      id: $stateParams.email
+    }, function(response) {
+      var status;
+      status = response.status === 200 ? 'success' : 'warning';
+      AlertService.display(response.message, status);
+      return $state.go('home');
+    });
+  });
+
+}).call(this);
+:ET

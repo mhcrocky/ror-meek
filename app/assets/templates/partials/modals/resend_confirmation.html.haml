@@ -1,0 +1,23 @@
+%script{ type: 'text/ng-template', id: 'resendConfirmation' }
+  .modal.modal-reset
+    .modal-wrapper
+      %a.logo{ 'ui-sref': 'home' }
+        %img{ src: image_path("logos/#{ENV.fetch('LOGO_NAME')}"), style: 'border-style: none' }
+
+      %form.site-form{ action: '/api/users/confirmation.json', method: 'POST', 'ng-submit': 'auth.submitEmailReconfirm($event)' }
+        %hr.separator
+        .title.text-support.uppercase Resend Confirmation Email
+        .text-support
+          If you want to resent confirmation email...
+        %br
+
+        .input-parent
+          %input{ type: 'hidden', name: 'base' }
+
+        .input-parent
+          %input.field{ type: 'text', name: 'user[email]', placeholder: 'Email' }
+
+        %button.btn-submit{ type: 'submit' } Send email
+        .info.text-support
+          .link{ 'ng-click': 'modal.signInDialog()' } Go to Sign in
+    .background-wrapper

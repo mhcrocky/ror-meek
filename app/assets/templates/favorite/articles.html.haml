@@ -1,0 +1,24 @@
+.static-page.favorite
+  .header-page
+    .list-breadcrumbs.left-right-offset
+      .list-breadcrumbs-item
+        %a.uppercase{ 'ui-sref': 'home' } Home
+      .list-breadcrumbs-item
+        .last-flex-item-container
+          Articles
+    .categories.uppercase
+      65 Favorites
+    %h1.title
+      Favorites
+    .info
+      Article Favorites
+
+    %div{ 'ng-include': "'partials/switcher.html'" }
+
+  %ul.list-menu-static-page{ 'ng-include': "'partials/favorites_menu.html'" }
+  %h1.title.left-right-offset
+    Article Favorites
+
+  .left-right-offset
+    %ul.list-box{ 'ng-class': 'listItemView.currentView()' }
+      %li.list-box-item{ 'ng-repeat': 'media in articles', 'ng-include': "'partials/media/article_item.html'" }

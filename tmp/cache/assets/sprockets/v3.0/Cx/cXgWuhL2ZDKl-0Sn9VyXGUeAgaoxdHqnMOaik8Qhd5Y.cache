@@ -1,0 +1,34 @@
+I"©(function() {
+  angular.module('Meek').service('NotifyFriendService', function(ModalService, AlertService, FormService) {
+    var NotifyFriend;
+    NotifyFriend = (function() {
+      function NotifyFriend() {}
+
+      NotifyFriend.prototype.submit = function(event) {
+        var $form, result;
+        event.preventDefault();
+        $form = $(event.target);
+        FormService.clearErrors($form);
+        result = FormService.submit($form);
+        result.success((function(_this) {
+          return function() {
+            ModalService.closeAll();
+            return AlertService.display('Notifyed.', 'success');
+          };
+        })(this));
+        result.error((function(_this) {
+          return function(data) {
+            return FormService.displayErrors($form, data);
+          };
+        })(this));
+        return false;
+      };
+
+      return NotifyFriend;
+
+    })();
+    return new NotifyFriend();
+  });
+
+}).call(this);
+:ET

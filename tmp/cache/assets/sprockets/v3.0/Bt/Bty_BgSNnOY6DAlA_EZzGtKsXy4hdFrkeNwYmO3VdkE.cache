@@ -1,0 +1,9 @@
+I"<(function() {
+  angular.module("Meek").controller("FavoriteArticlesController", function($rootScope, $scope, FavoriteArticles, ApplicationService) {
+    $rootScope.head.setTitle('Favorite Articles');
+    $scope.favorite_type = 'articles';
+    return $scope.articles = FavoriteArticles.query();
+  });
+
+}).call(this);
+:ET

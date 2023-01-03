@@ -1,0 +1,57 @@
+.site-form {
+  margin: 0 12%;
+  position: relative;
+  text-align: center;
+
+  .separator {
+    width: 100%;
+    margin-top: 0.7em;
+    position: absolute;
+  }
+
+  .title {
+    margin-bottom: 1em;
+    padding: 0 12px;
+    line-height: 1.2em;
+    text-align: center;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+  }
+
+  .btn-facebook {
+    @include btn-login-soc(#597eba);
+  }
+
+  .btn-twitter {
+    @include btn-login-soc(#5ecde1);
+  }
+
+  .btn-submit, .btn-signup {
+    @include btn-login-soc(#5eacd4);
+  }
+
+  .btn-signup {
+    @include btn-login-soc(#d46960);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+  }
+
+  .landing-page-field {
+    width: 100% !important;
+  }
+
+  .invalid-field {
+    border-color: red;
+  }
+}

@@ -1,0 +1,34 @@
+I"g(function() {
+  angular.module("Meek").controller("EpisodesController", function($rootScope, $scope, $stateParams, $sce, Category, Episode, Podcast, ApplicationService) {
+    $scope.category = Category.get({
+      id: $stateParams.categoryId
+    });
+    $scope.podcast = Podcast.get({
+      id: $stateParams.podcastId
+    });
+    return $scope.episode = Episode.get({
+      id: $stateParams.id,
+      podcastId: $stateParams.podcastId
+    }, function(episode) {
+      var metaInformation;
+      metaInformation = {
+        title: episode.meta_title,
+        description: episode.meta_description,
+        imagePath: episode.image,
+        googlebotImage: episode.googlebot,
+        videoUrl: episode.video ? episode.stream_url : void 0
+      };
+      $rootScope.head.setAllMetaInformation(metaInformation);
+      if (episode.noindex) {
+        $rootScope.head.setMetaTag({
+          name: 'robots',
+          content: 'noindex'
+        });
+      }
+      $scope.htmlSafeTranscription = $sce.trustAsHtml(episode.transcription);
+      return $scope.schema_content = $sce.trustAsHtml(episode.schema);
+    });
+  });
+
+}).call(this);
+:ET

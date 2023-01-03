@@ -1,0 +1,106 @@
+#meek-video-wrapper {
+  background-color: #303030;
+  padding: 40px 40px 0 40px;
+
+  #meek-video-container {
+    width: 100%;
+    box-sizing: border-box;
+
+    .video-js {
+      width: 100%;
+
+      // https://coolestguidesontheplanet.com/videodrome/youtube/
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    .vimeoplayer {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .action-buttons {
+    margin: 20px 0;
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+
+    .action-button {
+      float: left;
+      padding: 10px 0px;
+      width: 40px;
+      text-align: center;
+
+      &:hover {
+        background-color: red;
+        color: white;
+
+        .icon { color: #fff; }
+      }
+
+      .icon {
+        display: block;
+        color: #CCC;
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+#videoDialog {
+  display: none;
+
+  overflow: auto;
+  z-index: 10000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  .video-overlay {
+    position: fixed;
+    background: rgba(0,0,0,0.4);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    animation: ngdialog-fadein 0.5s;
+  }
+
+  #meek-video-wrapper {
+    @include transform-translate(-50%, -50%);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    max-width: 800px;
+  }
+}
+
+
+@include tablet-landscape {
+  #meek-video-wrapper {
+    padding: 20px 20px 0 20px;
+
+    .action-buttons {
+      margin: 10px 0;
+    }
+  }
+}
+
+@include tablet-portrait {
+  #meek-video-wrapper {
+    padding: 10px 10px 0 10px;
+
+    .action-buttons {
+      margin: 5px 0;
+    }
+  }
+}

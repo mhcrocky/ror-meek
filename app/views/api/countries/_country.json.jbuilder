@@ -1,0 +1,1 @@
+json.(country, :id, :iso2_code, :iso3_code, :name)

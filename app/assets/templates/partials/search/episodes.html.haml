@@ -1,0 +1,11 @@
+.left-right-offset
+  %h1.title Episodes:
+
+.left-right-offset
+  %ul.list-box.grid-view
+    %li.list-box-item{ 'ng-repeat': 'media in searchResultsData.episodes.data', 'ng-include': "'partials/media/episode_item.html'" }
+
+.left-right-offset
+  .btn-load-more{ 'ng-click': "loadEpisodes(searchResultsData.episodes.nextPage)", 'ng-hide': '!searchResultsData.episodes.nextPage' }
+    %span +
+    %span Load More

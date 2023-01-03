@@ -1,0 +1,34 @@
+I"Ó(function() {
+  angular.module("Meek").factory('httpInterceptor', [
+    '$injector', '$q', function($injector, $q) {
+      var error, success;
+      success = function(response) {
+        var page, url;
+        url = response.config.url;
+        page = response.config.params && response.config.params.page ? response.config.params.page : null;
+        if (url.startsWith('/api/')) {
+          window._bridge.redux.dispatch({
+            type: 'ANGULAR_RESOURCES__UPDATE',
+            resource: url + (page ? '?page=' + page : ''),
+            value: response.data
+          });
+        }
+        return response || $q.when(response);
+      };
+      error = function(response) {
+        if (response.status === 404) {
+          $injector.get('$state').go('404', null, {
+            location: false
+          });
+        }
+        return $q.reject(response);
+      };
+      return {
+        'response': success,
+        'responseError': error
+      };
+    }
+  ]);
+
+}).call(this);
+:ET

@@ -1,0 +1,26 @@
+I"o(function() {
+  var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+
+  angular.module("Meek").service('HideOnClickAnywhereService', function($rootScope, $state) {
+    var HideOnClickAnywhere;
+    HideOnClickAnywhere = (function() {
+      function HideOnClickAnywhere() {
+        this.hideOnClickIfVisible = bind(this.hideOnClickIfVisible, this);
+      }
+
+      HideOnClickAnywhere.prototype.hideOnClickIfVisible = function(targetSelector, activeClass) {
+        $('body').click(function(event) {
+          if ($(targetSelector).hasClass(activeClass) && !$(event.target).is(targetSelector) && !$(event.target).closest(targetSelector).length) {
+            return $(targetSelector).removeClass(activeClass);
+          }
+        });
+      };
+
+      return HideOnClickAnywhere;
+
+    })();
+    return new HideOnClickAnywhere();
+  });
+
+}).call(this);
+:ET
